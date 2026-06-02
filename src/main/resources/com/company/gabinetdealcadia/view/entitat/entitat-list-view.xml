@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://entitatListView.title"
+      focusComponent="entitatsDataGrid">
+    <data>
+        <collection id="entitatsDc"
+                    class="com.company.gabinetdealcadia.entity.Entitat">
+            <fetchPlan extends="_base"/>
+            <loader id="entitatsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Entitat e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="entitatsDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <startSlot>
+                <button id="createButton" action="entitatsDataGrid.createAction"/>
+                <button id="editButton" action="entitatsDataGrid.editAction"/>
+                <button id="removeButton" action="entitatsDataGrid.removeAction"/>
+
+                <fileStorageUploadField id="csvUpload"
+                                        acceptedFileTypes=".csv"
+                                        clearButtonVisible="true"
+                                        uploadIcon="UPLOAD"/>
+            </startSlot>
+            <endSlot>
+                <simplePagination id="pagination" dataLoader="entitatsDl"/>
+            </endSlot>
+        </hbox>
+        <dataGrid id="entitatsDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="entitatsDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="nom" header="Nom"/>
+                <column property="categoria" header="Categoria"/>
+                <column property="adreçaSeu" header="Adreça de la Seu"/>
+                <column property="codiPostal" header="Codi Postal"/>
+                <column property="poblacio" header="Població"/>
+                <column property="pais" header="País"/>
+                <column property="emailGeneral" header="Correu Electrònic General"/>
+                <column property="telefonSeu" header="Telèfon de la Seu"/>
+                <column property="activa" header="Activa"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>
