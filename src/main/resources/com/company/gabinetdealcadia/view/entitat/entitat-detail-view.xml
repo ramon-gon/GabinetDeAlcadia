@@ -22,15 +22,17 @@
                 <responsiveStep minWidth="0" columns="1"/>
                 <responsiveStep minWidth="40em" columns="2"/>
             </responsiveSteps>
-            <textField id="nomField" property="nom"/>
-            <textField id="categoriaField" property="categoria"/>
-            <textField id="adreçaSeuField" property="adreçaSeu"/>
-            <textField id="codiPostalField" property="codiPostal"/>
-            <textField id="poblacioField" property="poblacio"/>
-            <textField id="paisField" property="pais"/>
-            <textField id="emailGeneralField" property="emailGeneral"/>
-            <textField id="telefonSeuField" property="telefonSeu"/>
-            <checkbox id="activaField" property="activa"/>
+            <textField id="nomField" property="nom" label="Nom"/>
+
+            <comboBox id="categoriaField" label="Categoria"/>
+
+            <textField id="adreçaSeuField" property="adreçaSeu" label="Adreça de la Seu"/>
+            <textField id="codiPostalField" property="codiPostal" label="Codi Postal"/>
+            <textField id="poblacioField" property="poblacio" label="Població"/>
+            <textField id="paisField" property="pais" label="País"/>
+            <textField id="emailGeneralField" property="emailGeneral" label="Correu Electrònic General"/>
+            <textField id="telefonSeuField" property="telefonSeu" label="Telèfon de la Seu"/>
+            <checkbox id="activaField" property="activa" label="Activa"/>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveCloseAction"/>
