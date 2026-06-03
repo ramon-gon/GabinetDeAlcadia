@@ -1,8 +1,10 @@
 package com.company.gabinetdealcadia.entity;
 
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import io.jmix.core.metamodel.annotation.JmixProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -74,7 +76,17 @@ public class Contacte {
     @Column(name = "version")
     private Integer version = 1;
 
-    // Nombre de instancia Jmix combinando Nombre y Apellido
+// Dins de la teva entitat Contacte.java
+
+    @JmixProperty
+    @DependsOnProperties({"nom", "primer_cognom", "segon_cognom"})
+    public String getNomComplet() {
+        String n = nom != null ? nom : "";
+        String p = primer_cognom != null ? primer_cognom : "";
+        String s = segon_cognom != null ? segon_cognom : "";
+
+        return String.format("%s %s %s", n, p, s).trim().replaceAll("\\s+", " ");
+    }    // Nombre de instancia Jmix combinando Nombre y Apellido
     @InstanceName
     public String getDisplayName() {
         return String.format("%s %s", nom != null ? nom : "", primer_cognom != null ? primer_cognom : "").trim();

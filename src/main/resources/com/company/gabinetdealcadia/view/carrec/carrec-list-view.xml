@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://carrecListView.title"
+      focusComponent="carrecsDataGrid">
+    <data>
+        <collection id="carrecsDc"
+                    class="com.company.gabinetdealcadia.entity.Carrec">
+            <fetchPlan extends="_base">
+                <property name="contacte" fetchPlan="_base">
+                    <property name="primer_cognom"/>
+                    <property name="segon_cognom"/>
+                </property>
+                <property name="entitat" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="carrecsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Carrec e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="carrecsDl"
+                       autoApply="false">
+            <configurations>
+                <configuration id="filtrePredefinit" default="true">
+                    <jpqlFilter parameterClass="java.lang.String"
+                                label="Contacte"
+                                parameterName="cercaNomComplet">
+                        <condition>
+                            <c:jpql>
+                                <c:where><![CDATA[
+                                    lower(concat(
+                                        coalesce(e.contacte.nom, ''), ' ',
+                                        coalesce(e.contacte.primer_cognom, ''), ' ',
+                                        coalesce(e.contacte.segon_cognom, '')
+                                    )) like lower(concat('%', :cercaNomComplet, '%'))
+                                ]]></c:where>
+                            </c:jpql>
+                        </condition>
+                    </jpqlFilter>
+
+                    <propertyFilter property="entitat.nom" operation="CONTAINS" label="Entitat"/>
+                </configuration>
+            </configurations>
+        </genericFilter>
+
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <startSlot>
+                <button id="createButton" action="carrecsDataGrid.createAction"/>
+                <button id="editButton" action="carrecsDataGrid.editAction"/>
+                <button id="removeButton" action="carrecsDataGrid.removeAction"/>
+            </startSlot>
+            <endSlot>
+                <simplePagination id="pagination" dataLoader="carrecsDl"/>
+            </endSlot>
+        </hbox>
+        <dataGrid id="carrecsDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="carrecsDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column key="nomCompletContacte" header="Contacte" autoWidth="true"/>
+
+                <column property="entitat.nom" header="Entitat" autoWidth="true"/>
+                <column property="titolCarrec" header="Títol del Càrrec" autoWidth="true"/>
+                <column property="vigent" header="Vigent" autoWidth="true"/>
+                <column property="telefonDirecte" header="Telèfon Directe" autoWidth="true"/>
+                <column property="emailCorporatiu" header="Correu Electrònic Corporatiu" autoWidth="true"/>
+                <column property="puntTrameses" header="Punt de Trameses" autoWidth="true"/>
+                <column property="observacionsCarrec" header="Observacions del Càrrec" autoWidth="true" flexGrow="1"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

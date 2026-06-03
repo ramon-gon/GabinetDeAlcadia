@@ -5,6 +5,7 @@
         <item view="User.list" title="msg://com.company.gabinetdealcadia.view.user/UserListView.title"/>
         <item view="Contacte.list" title="msg://com.company.gabinetdealcadia.view.contacte/contacteListView.title"/>
         <item view="Entitat.list" title="msg://com.company.gabinetdealcadia.view.entitat/entitatListView.title"/>
+        <item view="Carrec.list" title="msg://com.company.gabinetdealcadia.view.carrec/carrecListView.title"/>
     </menu>
 
 </menu-config>
