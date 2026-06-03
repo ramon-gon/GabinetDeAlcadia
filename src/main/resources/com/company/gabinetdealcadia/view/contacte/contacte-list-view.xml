@@ -51,21 +51,21 @@
                 <action id="removeAction" type="list_remove"/>
             </actions>
             <columns resizable="true">
-                <column property="nom" header="Nom"/>
-                <column property="primer_cognom" header="Primer Cognom"/>
-                <column property="segon_cognom" header="Segon Cognom"/>
-                <column property="sexe" header="Sexe"/>
-                <column property="dataNaixement" header="Data de Naixement"/>
-                <column property="nomConjuge" header="Nom del Cònjuge"/>
-                <column property="primerCognomConjuge" header="Primer Cognom del Cònjuge"/>
-                <column property="segonCognomConjuge" header="Segon Cognom del Cònjuge"/>
-                <column property="sexeConjuge" header="Sexe del Cònjuge"/>
-                <column property="emailPersonal" header="Correu Electrònic Personal"/>
-                <column property="telefonMobil" header="Telèfon Mòbil"/>
-                <column property="adreçaParticular" header="Adreça Particular"/>
-                <column property="codiPostalParticular" header="Codi Postal Particular"/>
-                <column property="poblacioParticular" header="Població Particular"/>
-                <column property="observacionsHistoriques" header="Observacions Històriques"/>
+                <column property="nom" header="Nom" autoWidth="true"/>
+                <column property="primer_cognom" header="Primer Cognom" autoWidth="true"/>
+                <column property="segon_cognom" header="Segon Cognom" autoWidth="true"/>
+                <column property="sexe" header="Sexe" autoWidth="true"/>
+                <column property="dataNaixement" header="Data de Naixement" autoWidth="true"/>
+                <column property="nomConjuge" header="Nom del Cònjuge" autoWidth="true"/>
+                <column property="primerCognomConjuge" header="Primer Cognom del Cònjuge" autoWidth="true"/>
+                <column property="segonCognomConjuge" header="Segon Cognom del Cònjuge" autoWidth="true"/>
+                <column property="sexeConjuge" header="Sexe del Cònjuge" autoWidth="true"/>
+                <column property="emailPersonal" header="Correu Electrònic Personal" autoWidth="true"/>
+                <column property="telefonMobil" header="Telèfon Mòbil" autoWidth="true"/>
+                <column property="adreçaParticular" header="Adreça Particular" autoWidth="true"/>
+                <column property="codiPostalParticular" header="Codi Postal Particular" autoWidth="true"/>
+                <column property="poblacioParticular" header="Població Particular" autoWidth="true"/>
+                <column property="observacionsHistoriques" header="Observacions Històriques" autoWidth="true"/>
             </columns>
         </dataGrid>
         <hbox id="lookupActions" visible="false">

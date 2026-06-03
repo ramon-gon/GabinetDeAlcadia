@@ -55,16 +55,18 @@
                 <action id="editAction" type="list_edit"/>
                 <action id="removeAction" type="list_remove"/>
             </actions>
+            <!-- Columnes amb ajust d'amplada automàtic segons contingut -->
             <columns resizable="true">
-                <column property="nom" header="Nom"/>
-                <column property="categoria" header="Categoria"/>
-                <column property="adreçaSeu" header="Adreça de la Seu"/>
-                <column property="codiPostal" header="Codi Postal"/>
-                <column property="poblacio" header="Població"/>
-                <column property="pais" header="País"/>
-                <column property="emailGeneral" header="Correu Electrònic General"/>
-                <column property="telefonSeu" header="Telèfon de la Seu"/>
-                <column property="activa" header="Activa"/>
+                <column property="nom" header="Nom" autoWidth="true"/>
+                <column property="categoria" header="Categoria" autoWidth="true"/>
+                <column property="adreçaSeu" header="Adreça de la Seu" autoWidth="true"/>
+                <column property="codiPostal" header="Codi Postal" autoWidth="true"/>
+                <column property="poblacio" header="Població" autoWidth="true"/>
+                <column property="pais" header="País" autoWidth="true"/>
+                <!-- flexGrow="1" fa que la columna del correu s'estiri per omplir l'espai restant de la pantalla -->
+                <column property="emailGeneral" header="Correu Electrònic General" autoWidth="true" flexGrow="1"/>
+                <column property="telefonSeu" header="Telèfon de la Seu" autoWidth="true"/>
+                <column property="activa" header="Activa" autoWidth="true"/>
             </columns>
         </dataGrid>
         <hbox id="lookupActions" visible="false">
