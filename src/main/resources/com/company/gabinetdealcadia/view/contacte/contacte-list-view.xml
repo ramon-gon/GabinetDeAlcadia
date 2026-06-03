@@ -27,8 +27,27 @@
     </actions>
     <layout>
         <genericFilter id="genericFilter"
-                       dataLoader="contactesDl">
-            <properties include=".*"/>
+                       dataLoader="contactesDl"
+                       autoApply="false">
+            <configurations>
+                <configuration id="filtrePredefinit" default="true">
+                    <jpqlFilter parameterClass="java.lang.String"
+                                label="Cerca Nom Complet"
+                                parameterName="cercaNomComplet">
+                        <condition>
+                            <c:jpql>
+                                <c:where><![CDATA[
+                                    lower(concat(
+                                        coalesce(e.nom, ''), ' ',
+                                        coalesce(e.primer_cognom, ''), ' ',
+                                        coalesce(e.segon_cognom, '')
+                                    )) like lower(concat('%', :cercaNomComplet, '%'))
+                                ]]></c:where>
+                            </c:jpql>
+                        </condition>
+                    </jpqlFilter>
+                </configuration>
+            </configurations>
         </genericFilter>
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <startSlot>
