@@ -12,6 +12,20 @@ import io.jmix.flowui.view.*;
 @LookupComponent("carrecsDataGrid")
 public class CarrecListView extends StandardListView<Carrec> {
 
+    @Supply(to = "carrecsDataGrid.vigent", subject = "renderer")
+    private com.vaadin.flow.data.renderer.Renderer<Carrec> vigentRenderer() {
+        return new com.vaadin.flow.data.renderer.TextRenderer<>(carrec ->
+                (carrec.getVigent() != null && carrec.getVigent()) ? "Sí" : "No"
+        );
+    }
+
+    @Supply(to = "carrecsDataGrid.puntTrameses", subject = "renderer")
+    private com.vaadin.flow.data.renderer.Renderer<Carrec> puntTramesesRenderer() {
+        return new com.vaadin.flow.data.renderer.TextRenderer<>(carrec ->
+                (carrec.getPuntTrameses() != null && carrec.getPuntTrameses()) ? "Sí" : "No"
+        );
+    }
+
     @Supply(to = "carrecsDataGrid.nomCompletContacte", subject = "renderer")
     private com.vaadin.flow.data.renderer.Renderer<Carrec> nomCompletContacteRenderer() {
         return new com.vaadin.flow.data.renderer.TextRenderer<>(carrec -> {

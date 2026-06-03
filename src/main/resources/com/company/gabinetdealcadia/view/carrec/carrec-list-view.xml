@@ -83,10 +83,14 @@
 
                 <column property="entitat.nom" header="Entitat" autoWidth="true"/>
                 <column property="titolCarrec" header="Títol del Càrrec" autoWidth="true"/>
+
                 <column property="vigent" header="Vigent" autoWidth="true"/>
+
                 <column property="telefonDirecte" header="Telèfon Directe" autoWidth="true"/>
                 <column property="emailCorporatiu" header="Correu Electrònic Corporatiu" autoWidth="true"/>
+
                 <column property="puntTrameses" header="Punt de Trameses" autoWidth="true"/>
+
                 <column property="observacionsCarrec" header="Observacions del Càrrec" autoWidth="true" flexGrow="1"/>
             </columns>
         </dataGrid>
