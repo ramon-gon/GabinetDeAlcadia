@@ -87,6 +87,7 @@
                 <column property="vigent" header="Vigent" autoWidth="true"/>
 
                 <column property="telefonDirecte" header="Telèfon Directe" autoWidth="true"/>
+                <column key="sobrantTelefonDirecte" header="Comentaris del Telèfon" autoWidth="true"/>
                 <column property="emailCorporatiu" header="Correu Electrònic Corporatiu" autoWidth="true"/>
 
                 <column property="puntTrameses" header="Punt de Trameses" autoWidth="true"/>
