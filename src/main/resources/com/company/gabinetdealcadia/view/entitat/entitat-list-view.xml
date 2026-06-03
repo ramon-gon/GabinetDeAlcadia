@@ -26,10 +26,25 @@
         <action id="discardAction" type="lookup_discard"/>
     </actions>
     <layout>
+        <!-- 🛠️ SECCIÓ DE FILTRES MODIFICADA -->
         <genericFilter id="genericFilter"
-                       dataLoader="entitatsDl">
-            <properties include=".*"/>
+                       dataLoader="entitatsDl"
+                       autoApply="false"> <!-- Evita que busqui a cada lletra que escrius, busca en clicar 'Cercar' -->
+            <configurations>
+                <configuration id="filtreEntitats" default="true">
+                    <!-- Filtre per Nom de l'Entitat (Cerca parcial, no importa majúscules) -->
+                    <propertyFilter property="nom"
+                                    operation="CONTAINS"
+                                    label="Nom Entitat"/>
+
+                    <!-- Filtre per Categoria (Si és un String busca text, si és un Enum generarà un desplegable automàtic) -->
+                    <propertyFilter property="categoria"
+                                    operation="CONTAINS"
+                                    label="Categoria"/>
+                </configuration>
+            </configurations>
         </genericFilter>
+
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <startSlot>
                 <button id="createButton" action="entitatsDataGrid.createAction"/>
@@ -55,7 +70,6 @@
                 <action id="editAction" type="list_edit"/>
                 <action id="removeAction" type="list_remove"/>
             </actions>
-            <!-- Columnes amb ajust d'amplada automàtic segons contingut -->
             <columns resizable="true">
                 <column property="nom" header="Nom" autoWidth="true"/>
                 <column property="categoria" header="Categoria" autoWidth="true"/>
@@ -63,7 +77,6 @@
                 <column property="codiPostal" header="Codi Postal" autoWidth="true"/>
                 <column property="poblacio" header="Població" autoWidth="true"/>
                 <column property="pais" header="País" autoWidth="true"/>
-                <!-- flexGrow="1" fa que la columna del correu s'estiri per omplir l'espai restant de la pantalla -->
                 <column property="emailGeneral" header="Correu Electrònic General" autoWidth="true" flexGrow="1"/>
                 <column property="telefonSeu" header="Telèfon de la Seu" autoWidth="true"/>
                 <column property="activa" header="Activa" autoWidth="true"/>
