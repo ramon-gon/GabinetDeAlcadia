@@ -79,6 +79,7 @@
 
                 <column property="emailPersonal" header="Correu Electrònic Personal" autoWidth="true"/>
                 <column property="telefonMobil" header="Telèfon Mòbil" autoWidth="true"/>
+                <column key="comentarisTelefon" header="Comentaris del telèfon" autoWidth="true" flexGrow="1"/>
                 <column property="adreçaParticular" header="Adreça Particular" autoWidth="true"/>
                 <column property="codiPostalParticular" header="Codi Postal Particular" autoWidth="true"/>
                 <column property="poblacioParticular" header="Població Particular" autoWidth="true"/>

@@ -13,6 +13,30 @@ import com.vaadin.flow.data.renderer.TextRenderer;
 @ViewDescriptor("contacte-list-view.xml")
 public class ContacteListView extends StandardListView<Contacte> {
 
+    // Renderitzador per a la columna del telèfon (només els 9 primers)
+    @Supply(to = "contactesDataGrid.telefonMobil", subject = "renderer")
+    private Renderer<Contacte> telefonMobilRenderer() {
+        return new TextRenderer<>(c -> {
+            String tel = c.getTelefonMobil();
+            if (tel == null || tel.isEmpty()) return "";
+            // Agafa només els 9 primers caràcters
+            return tel.length() > 9 ? tel.substring(0, 9) : tel;
+        });
+    }
+
+    // Renderitzador per a la columna virtual (la resta)
+    @Supply(to = "contactesDataGrid.comentarisTelefon", subject = "renderer")
+    private Renderer<Contacte> comentarisTelefonRenderer() {
+        return new TextRenderer<>(c -> {
+            String tel = c.getTelefonMobil();
+            // Si el telèfon és més llarg de 9, mostra el que sobra
+            if (tel != null && tel.length() > 9) {
+                return tel.substring(9).trim();
+            }
+            return ""; // Si no hi ha més text, deixa la cel·la buida
+        });
+    }
+
     // 1. Renderitzador per agrupar el Nom i Cognoms del Contacte principal
     @Supply(to = "contactesDataGrid.nomCompletContacte", subject = "renderer")
     private Renderer<Contacte> nomCompletContacteRenderer() {
