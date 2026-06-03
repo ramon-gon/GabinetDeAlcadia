@@ -5,10 +5,38 @@
     <data>
         <instance id="carrecDc"
                   class="com.company.gabinetdealcadia.entity.Carrec">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="contacte" fetchPlan="_base">
+                    <property name="primer_cognom"/>
+                    <property name="segon_cognom"/>
+                </property>
+                <property name="entitat" fetchPlan="_base">
+                    <property name="nom"/>
+                </property>
+            </fetchPlan>
             <loader id="carrecDl"/>
         </instance>
+
+        <collection id="contactesDc" class="com.company.gabinetdealcadia.entity.Contacte">
+            <fetchPlan extends="_base">
+                <property name="primer_cognom"/>
+                <property name="segon_cognom"/>
+            </fetchPlan>
+            <loader id="contactesDl">
+                <query><![CDATA[select e from Contacte e order by e.nom, e.primer_cognom]]></query>
+            </loader>
+        </collection>
+
+        <collection id="entitatsDc" class="com.company.gabinetdealcadia.entity.Entitat">
+            <fetchPlan extends="_base">
+                <property name="nom"/>
+            </fetchPlan>
+            <loader id="entitatsDl">
+                <query><![CDATA[select e from Entitat e order by e.nom]]></query>
+            </loader>
+        </collection>
     </data>
+
     <facets>
         <dataLoadCoordinator auto="true"/>
     </facets>
@@ -22,12 +50,28 @@
                 <responsiveStep minWidth="0" columns="1"/>
                 <responsiveStep minWidth="40em" columns="2"/>
             </responsiveSteps>
-            <textField id="titolCarrecField" property="titolCarrec"/>
-            <checkbox id="vigentField" property="vigent"/>
-            <textField id="telefonDirecteField" property="telefonDirecte"/>
-            <textField id="emailCorporatiuField" property="emailCorporatiu"/>
-            <checkbox id="puntTramesesField" property="puntTrameses"/>
-            <textArea id="observacionsCarrecField" height="9.5em" property="observacionsCarrec"/>
+
+            <entityComboBox id="contacteField"
+                            property="contacte"
+                            itemsContainer="contactesDc"
+                            label="Contacte"
+                            required="true"/>
+
+            <entityComboBox id="entitatField"
+                            property="entitat"
+                            itemsContainer="entitatsDc"
+                            label="Entitat"
+                            required="true"/>
+
+            <textField id="titolCarrecField" property="titolCarrec" label="Títol del Càrrec"/>
+            <checkbox id="vigentField" property="vigent" label="Vigent"/>
+
+            <textField id="telefonDirecteField" property="telefonDirecte" label="Telèfon Directe"/>
+            <textField id="emailCorporatiuField" property="emailCorporatiu" label="Correu Electrònic Corporatiu"/>
+
+            <checkbox id="puntTramesesField" property="puntTrameses" label="Punt de Trameses"/>
+
+            <textArea id="observacionsCarrecField" height="9.5em" property="observacionsCarrec" label="Observacions del Càrrec" colspan="2"/>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveCloseAction"/>
