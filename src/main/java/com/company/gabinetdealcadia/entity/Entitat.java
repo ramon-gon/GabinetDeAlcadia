@@ -45,12 +45,18 @@ public class Entitat {
     @Column(name = "telefon_seu")
     private String telefonSeu;
 
+    @Column(name = "comentari_telefon_seu")
+    private String comentariTelefonSeu;
+
     @Column(name = "activa")
     private Boolean activa = true;
 
     @Version
     @Column(name = "version")
     private Integer version = 1;
+
+    public String getComentariTelefonSeu() { return comentariTelefonSeu; }
+    public void setComentariTelefonSeu(String comentariTelefonSeu) { this.comentariTelefonSeu = comentariTelefonSeu; }
 
     public UUID getId() {
         return id;

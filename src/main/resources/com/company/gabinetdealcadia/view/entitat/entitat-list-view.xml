@@ -79,6 +79,7 @@
                 <column property="pais" header="País" autoWidth="true"/>
                 <column property="emailGeneral" header="Correu Electrònic General" autoWidth="true" flexGrow="1"/>
                 <column property="telefonSeu" header="Telèfon de la Seu" autoWidth="true"/>
+                <column property="comentariTelefonSeu" header="Comentaris del telèfon" autoWidth="true"/>
                 <column property="activa" header="Activa" autoWidth="true"/>
             </columns>
         </dataGrid>

@@ -32,6 +32,7 @@
             <textField id="paisField" property="pais" label="País"/>
             <textField id="emailGeneralField" property="emailGeneral" label="Correu Electrònic General"/>
             <textField id="telefonSeuField" property="telefonSeu" label="Telèfon de la Seu"/>
+            <textField id="comentariTelefonSeuField" property="comentariTelefonSeu" label="Comentaris del telèfon"/>
             <checkbox id="activaField" property="activa" label="Activa"/>
         </formLayout>
         <hbox id="detailActions">
