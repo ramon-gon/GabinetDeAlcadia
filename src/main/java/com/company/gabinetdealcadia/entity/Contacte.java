@@ -75,8 +75,11 @@ public class Contacte {
     @Version
     @Column(name = "version")
     private Integer version = 1;
+    @Column(name = "comentari_telefon_mobil")
+    private String comentariTelefonMobil;
 
-// Dins de la teva entitat Contacte.java
+    public String getComentariTelefonMobil() { return comentariTelefonMobil; }
+    public void setComentariTelefonMobil(String comentariTelefonMobil) { this.comentariTelefonMobil = comentariTelefonMobil; }
 
     @JmixProperty
     @DependsOnProperties({"nom", "primer_cognom", "segon_cognom"})

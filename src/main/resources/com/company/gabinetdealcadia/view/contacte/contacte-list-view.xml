@@ -32,7 +32,7 @@
             <configurations>
                 <configuration id="filtrePredefinit" default="true">
                     <jpqlFilter parameterClass="java.lang.String"
-                                label="Cerca Nom Complet"
+                                label="Cerca Nom"
                                 parameterName="cercaNomComplet">
                         <condition>
                             <c:jpql>
@@ -79,7 +79,7 @@
 
                 <column property="emailPersonal" header="Correu Electrònic Personal" autoWidth="true"/>
                 <column property="telefonMobil" header="Telèfon Mòbil" autoWidth="true"/>
-                <column key="comentarisTelefon" header="Comentaris del telèfon" autoWidth="true" flexGrow="1"/>
+                <column property="comentariTelefonMobil" header="Comentaris del telèfon" autoWidth="true"/>
                 <column property="adreçaParticular" header="Adreça Particular" autoWidth="true"/>
                 <column property="codiPostalParticular" header="Codi Postal Particular" autoWidth="true"/>
                 <column property="poblacioParticular" header="Població Particular" autoWidth="true"/>

@@ -32,7 +32,8 @@
             <textField id="segonCognomConjugeField" property="segonCognomConjuge"/>
             <select id="sexeConjugeField" property="sexeConjuge"/>
             <textField id="emailPersonalField" property="emailPersonal"/>
-            <textField id="telefonMobilField" property="telefonMobil"/>
+            <textField id="telefonMobilField" property="telefonMobil" label="Telèfon Mòbil"/>
+            <textField id="comentariTelefonMobilField" property="comentariTelefonMobil" label="Comentaris del telèfon"/>
             <textField id="adreçaParticularField" property="adreçaParticular"/>
             <textField id="codiPostalParticularField" property="codiPostalParticular"/>
             <textField id="poblacioParticularField" property="poblacioParticular"/>
