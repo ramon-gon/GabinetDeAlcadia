@@ -67,6 +67,9 @@
             <checkbox id="vigentField" property="vigent" label="Vigent"/>
 
             <textField id="telefonDirecteField" property="telefonDirecte" label="Telèfon Directe"/>
+
+            <textField id="comentariTelefonField" property="comentariTelefon" label="Comentaris del telèfon"/>
+
             <textField id="emailCorporatiuField" property="emailCorporatiu" label="Correu Electrònic Corporatiu"/>
 
             <checkbox id="puntTramesesField" property="puntTrameses" label="Punt de Trameses"/>

@@ -59,6 +59,17 @@ public class Carrec {
     @Column(name = "version")
     private Integer version = 1;
 
+    @Column(name = "comentari_telefon")
+    private String comentariTelefon;
+
+    public String getComentariTelefon() {
+        return comentariTelefon;
+    }
+
+    public void setComentariTelefon(String comentariTelefon) {
+        this.comentariTelefon = comentariTelefon;
+    }
+
     public UUID getId() {
         return id;
     }
