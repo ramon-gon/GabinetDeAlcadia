@@ -24,7 +24,10 @@
             </responsiveSteps>
             <textField id="nomField" property="nom" label="Nom"/>
 
-            <comboBox id="categoriaField" label="Categoria"/>
+            <comboBox id="categoriaField"
+                      dataContainer="entitatDc"
+                      property="categoria"
+                      label="Categoria"/>
 
             <textField id="adreçaSeuField" property="adreçaSeu" label="Adreça de la Seu"/>
             <textField id="codiPostalField" property="codiPostal" label="Codi Postal"/>
