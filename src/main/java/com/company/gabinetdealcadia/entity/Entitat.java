@@ -145,4 +145,8 @@ public class Entitat {
     public void setVersion(Integer version) {
         this.version = version;
     }
+
+    public String getActivaSiNo() {
+        return Boolean.TRUE.equals(activa) ? "Sí" : "No";
+    }
 }

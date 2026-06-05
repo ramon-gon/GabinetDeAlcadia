@@ -50,11 +50,6 @@
                 <button id="createButton" action="entitatsDataGrid.createAction"/>
                 <button id="editButton" action="entitatsDataGrid.editAction"/>
                 <button id="removeButton" action="entitatsDataGrid.removeAction"/>
-
-                <fileStorageUploadField id="csvUpload"
-                                        acceptedFileTypes=".csv"
-                                        clearButtonVisible="true"
-                                        uploadIcon="UPLOAD"/>
             </startSlot>
             <endSlot>
                 <simplePagination id="pagination" dataLoader="entitatsDl"/>
