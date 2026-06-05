@@ -18,9 +18,19 @@ public class CarrecListView extends StandardListView<Carrec> {
     @Autowired
     private CarrecService carrecService;
 
-    // Aquest sí que el mantens perquè el "Nom Complet" no és un camp de la BBDD
     @Supply(to = "carrecsDataGrid.nomCompletContacte", subject = "renderer")
     private Renderer<Carrec> nomCompletContacteRenderer() {
         return new TextRenderer<>(c -> carrecService.formatarNomComplet(c.getContacte()));
+    }
+
+    // Afegim els renderers per als booleans utilitzant els mètodes de l'entitat
+    @Supply(to = "carrecsDataGrid.vigent", subject = "renderer")
+    private Renderer<Carrec> vigentRenderer() {
+        return new TextRenderer<>(Carrec::getVigentSiNo);
+    }
+
+    @Supply(to = "carrecsDataGrid.puntTrameses", subject = "renderer")
+    private Renderer<Carrec> puntTramesesRenderer() {
+        return new TextRenderer<>(Carrec::getPuntTramesesSiNo);
     }
 }

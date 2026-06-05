@@ -149,4 +149,11 @@ public class Carrec {
     public void setVersion(Integer version) {
         this.version = version;
     }
-}
+
+    public String getVigentSiNo() {
+        return Boolean.TRUE.equals(vigent) ? "Sí" : "No";
+    }
+
+    public String getPuntTramesesSiNo() {
+        return Boolean.TRUE.equals(puntTrameses) ? "Sí" : "No";
+    }}
