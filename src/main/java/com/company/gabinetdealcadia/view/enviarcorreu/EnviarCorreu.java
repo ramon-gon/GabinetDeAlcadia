@@ -67,6 +67,13 @@ public class EnviarCorreu extends StandardView {
                     segonCognom,
                     (email != null ? email : "Sense email")).replace("  ", " ");
         });
+
+        contactesMultiSelector.setItems(contactesFiltratsDc.getItems());
+
+        // Si el botó està deshabilitat, a vegades és perquè Jmix creu
+        // que la vista està en estat de només lectura o sense dades.
+        // Assegura't de forçar l'habilitació si ho desitges:
+        sendBtn.setEnabled(true);
     }
     @Subscribe("entitatFilter")
     public void onEntitatFilterChange(final AbstractField.ComponentValueChangeEvent<ComboBox<Entitat>, Entitat> event) {
