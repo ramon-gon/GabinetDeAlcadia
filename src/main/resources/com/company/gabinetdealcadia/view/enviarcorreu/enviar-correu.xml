@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="Enviar Correu - Gabinet d'Alcaldia">
+    <data>
+        <collection id="contactesFiltratsDc" class="com.company.gabinetdealcadia.entity.Carrec">
+            <fetchPlan extends="_base">
+                <property name="contacte" fetch="AUTO"/>
+            </fetchPlan>
+            <loader id="contactesFiltratsDl">
+                <query>
+                    <![CDATA[select cr from Carrec cr where cr.puntTrameses = true]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <layout padding="true" spacing="true" width="45em">
+        <span text="Redactar correu per al Gabinet d'Alcaldia" classNames="text-s font-bold text-secondary"/>
+
+        <hbox width="100%" spacing="true" classNames="items-baseline">
+ <comboBox id="entitatFilter" label="Filtrar per Entitat" width="100%" clearButtonVisible="true"/>
+        </hbox>
+
+        <multiSelectComboBox id="contactesMultiSelector"
+                             label="Destinataris"
+                             itemsContainer="contactesFiltratsDc"
+                             width="100%"/>
+
+        <textField id="assumpteField" label="Assumpte" width="100%" required="true"/>
+        <textArea id="missatgeField" label="Missatge" width="100%" height="15em" required="true"/>
+
+        <hbox width="100%" classNames="justify-end mt-l gap-m">
+            <button id="cancelBtn" text="Cancel·lar" themeNames="tertiary"/>
+            <button id="sendBtn" text="Enviar" themeNames="primary" icon="vaadin:paperplane" enabled="false"/>
+        </hbox>
+    </layout>
+</view>
