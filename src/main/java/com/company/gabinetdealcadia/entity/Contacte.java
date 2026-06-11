@@ -81,6 +81,21 @@ public class Contacte {
     public String getComentariTelefonMobil() { return comentariTelefonMobil; }
     public void setComentariTelefonMobil(String comentariTelefonMobil) { this.comentariTelefonMobil = comentariTelefonMobil; }
 
+    // ... sota d'atributs com comentariTelefonMobil ...
+
+    @JoinColumn(name = "CARREC_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Carrec carrec; // Creem la clau forana cap a l'entitat Carrec
+
+    // Afegeix els Getters i Setters al final de la classe
+    public Carrec getCarrec() {
+        return carrec;
+    }
+
+    public void setCarrec(Carrec carrec) {
+        this.carrec = carrec;
+    }
+
     @JmixProperty
     @DependsOnProperties({"nom", "primer_cognom", "segon_cognom"})
     public String getNomComplet() {

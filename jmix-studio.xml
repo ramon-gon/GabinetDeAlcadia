@@ -47,4 +47,11 @@
       </list>
     </option>
   </component>
+  <component name="VersionUpdateSettings">
+    <option name="ignoredVersions">
+      <set>
+        <option value="2.8.2" />
+      </set>
+    </option>
+  </component>
 </project>
