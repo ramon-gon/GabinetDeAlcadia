@@ -17,33 +17,59 @@
         <action id="closeAction" type="detail_close"/>
     </actions>
     <layout>
-        <formLayout id="form" dataContainer="contacteDc">
-            <responsiveSteps>
-                <responsiveStep minWidth="0" columns="1"/>
-                <responsiveStep minWidth="40em" columns="2"/>
-            </responsiveSteps>
-            <textField id="nomField" property="nom"/>
-            <textField id="primerCognomField" property="primer_cognom"/>
-            <textField id="segonCognomField" property="segon_cognom"/>
-            <select id="sexeField" property="sexe"/>
-            <datePicker id="dataNaixementField" property="dataNaixement"/>
-            <textField id="nomConjugeField" property="nomConjuge"/>
-            <textField id="primerCognomConjugeField" property="primerCognomConjuge"/>
-            <textField id="segonCognomConjugeField" property="segonCognomConjuge"/>
-            <select id="sexeConjugeField" property="sexeConjuge"/>
-            <textField id="emailPersonalField" property="emailPersonal"/>
-            <textField id="telefonMobilField"
-                       property="telefonMobil"
-                       label="Telèfon Mòbil"
-                       allowedCharPattern="[0-9]"/>
-            <textField id="comentariTelefonMobilField" property="comentariTelefonMobil" label="Comentaris del telèfon"/>
-            <textField id="adreçaParticularField" property="adreçaParticular"/>
-            <textField id="codiPostalParticularField"
-                       property="codiPostalParticular"
-                       allowedCharPattern="[0-9]"/>
-            <textField id="poblacioParticularField" property="poblacioParticular"/>
-            <textArea id="observacionsHistoriquesField" height="9.5em" property="observacionsHistoriques"/>
-        </formLayout>
+        <vbox id="mainBox">
+
+            <h3>Dades del Contacte</h3>
+            <formLayout id="form" dataContainer="contacteDc">
+                <responsiveSteps>
+                    <responsiveStep minWidth="0" columns="1"/>
+                    <responsiveStep minWidth="40em" columns="2"/>
+                </responsiveSteps>
+
+                <textField id="nomField" property="nom"/>
+                <textField id="primerCognomField" property="primer_cognom"/>
+                <textField id="segonCognomField" property="segon_cognom"/>
+
+                <textField id="carrecEntitatNomField" label="Entitat" readOnly="true"/>
+                <textField id="carrecTitolField" label="Títol del Càrrec" readOnly="true"/>
+
+                <select id="sexeField" property="sexe"/>
+                <datePicker id="dataNaixementField" property="dataNaixement"/>
+            </formLayout>
+
+            <hr/>
+
+            <h3>Dades del Didn't / Cònjuge</h3>
+            <formLayout id="formConjuge" dataContainer="contacteDc">
+                <responsiveSteps>
+                    <responsiveStep minWidth="0" columns="1"/>
+                    <responsiveStep minWidth="40em" columns="2"/>
+                </responsiveSteps>
+                <textField id="nomConjugeField" property="nomConjuge"/>
+                <textField id="primerCognomConjugeField" property="primerCognomConjuge"/>
+                <textField id="segonCognomConjugeField" property="segonCognomConjuge"/>
+                <select id="sexeConjugeField" property="sexeConjuge"/>
+            </formLayout>
+
+            <hr/>
+
+            <h3>Dades de Contacte i Particulars</h3>
+            <formLayout id="formContacte" dataContainer="contacteDc">
+                <responsiveSteps>
+                    <responsiveStep minWidth="0" columns="1"/>
+                    <responsiveStep minWidth="40em" columns="2"/>
+                </responsiveSteps>
+                <textField id="emailPersonalField" property="emailPersonal"/>
+                <textField id="telefonMobilField" property="telefonMobil" label="Telèfon Mòbil" allowedCharPattern="[0-9]"/>
+                <textField id="comentariTelefonMobilField" property="comentariTelefonMobil" label="Comentaris del telèfon"/>
+                <textField id="adreçaParticularField" property="adreçaParticular"/>
+                <textField id="codiPostalParticularField" property="codiPostalParticular" allowedCharPattern="[0-9]"/>
+                <textField id="poblacioParticularField" property="poblacioParticular"/>
+                <textArea id="observacionsHistoriquesField" property="observacionsHistoriques"/>
+            </formLayout>
+
+        </vbox>
+
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveCloseAction"/>
             <button id="closeButton" action="closeAction"/>

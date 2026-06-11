@@ -3,7 +3,6 @@ package com.company.gabinetdealcadia.service;
 import com.company.gabinetdealcadia.entity.Carrec;
 import com.company.gabinetdealcadia.entity.Contacte;
 import com.company.gabinetdealcadia.entity.Entitat;
-// IMPORTACIONS AFEGIDES: Motor de dades de Jmix i injecció de Spring
 import io.jmix.core.DataManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarrecService {
 
-    // INJECCIÓ AFEGIDA: Ara el servei ja té accés a la base de dades
     @Autowired
     private DataManager dataManager;
 
@@ -23,7 +21,7 @@ public class CarrecService {
             // Guardem els primers 9 dígits com a telèfon directe
             carrec.setTelefonDirecte(telNete.length() > 9 ? telNete.substring(0, 9) : telNete);
 
-            // Correcció segura: si el text original era llarg, en guardem el comentari restant
+            // Si el text original era llarg, en guardem el comentari restant
             if (tel.trim().length() > 9) {
                 carrec.setComentariTelefon(tel.trim().substring(9).trim());
             }
@@ -41,7 +39,7 @@ public class CarrecService {
     public String formatarNomEntitat(Entitat entitat) {
         return (entitat != null && entitat.getNom() != null) ? entitat.getNom() : "";
     }
-
+    
     public String obtenirNomEntitatVigent(Contacte contacte) {
         if (contacte == null) {
             return null;
@@ -50,10 +48,30 @@ public class CarrecService {
         return dataManager.load(Carrec.class)
                 .query("select c from Carrec c where c.contacte = :contacte and c.vigent = true")
                 .parameter("contacte", contacte)
-                // CORRECCIÓ: Sintaxi oficial de Jmix 2.x per a FetchPlanBuilder
                 .fetchPlan(fp -> fp.add("entitat", io.jmix.core.FetchPlan.BASE))
                 .optional()
                 .map(carrec -> carrec.getEntitat() != null ? carrec.getEntitat().getNom() : null)
+                .orElse(null);
+    }
+
+    /**
+     * Obté l'objecte Carrec vigent d'un contacte, assegurant que es carreguin
+     * tant la relació de l'Entitat com el camp Títol del Càrrec per evitar el crash d'unfetched attribute.
+     */
+    public Carrec obtenirCarrecVigent(Contacte contacte) {
+        if (contacte == null) {
+            return null;
+        }
+
+        return dataManager.load(Carrec.class)
+                .query("select c from Carrec c where c.contacte = :contacte and c.vigent = true")
+                .parameter("contacte", contacte)
+                // MODIFICACIÓ CLAU: Forcem a carregar l'entitat i el títol del càrrec de forma explícita
+                .fetchPlan(fp -> {
+                    fp.add("entitat", io.jmix.core.FetchPlan.BASE);
+                    fp.add("titolCarrec");
+                })
+                .optional()
                 .orElse(null);
     }
 }
