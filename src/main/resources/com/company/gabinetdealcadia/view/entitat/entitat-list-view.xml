@@ -6,7 +6,9 @@
     <data>
         <collection id="entitatsDc"
                     class="com.company.gabinetdealcadia.entity.Entitat">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="categorias" fetchPlan="_base"/>
+            </fetchPlan>
             <loader id="entitatsDl" readOnly="true">
                 <query>
                     <![CDATA[select e from Entitat e]]>
@@ -26,21 +28,15 @@
         <action id="discardAction" type="lookup_discard"/>
     </actions>
     <layout>
-        <!-- 🛠️ SECCIÓ DE FILTRES MODIFICADA -->
         <genericFilter id="genericFilter"
                        dataLoader="entitatsDl"
-                       autoApply="false"> <!-- Evita que busqui a cada lletra que escrius, busca en clicar 'Cercar' -->
+                       autoApply="false">
             <configurations>
                 <configuration id="filtreEntitats" default="true">
-                    <!-- Filtre per Nom de l'Entitat (Cerca parcial, no importa majúscules) -->
                     <propertyFilter property="nom"
                                     operation="CONTAINS"
                                     label="Nom Entitat"/>
 
-                    <!-- Filtre per Categoria (Si és un String busca text, si és un Enum generarà un desplegable automàtic) -->
-                    <propertyFilter property="categoria"
-                                    operation="CONTAINS"
-                                    label="Categoria"/>
                 </configuration>
             </configurations>
         </genericFilter>
@@ -67,7 +63,7 @@
             </actions>
             <columns resizable="true">
                 <column property="nom" header="Nom" autoWidth="true"/>
-                <column property="categoria" header="Categoria" autoWidth="true"/>
+
                 <column property="adreçaSeu" header="Adreça de la Seu" autoWidth="true"/>
                 <column property="codiPostal" header="Codi Postal" autoWidth="true"/>
                 <column property="poblacio" header="Població" autoWidth="true"/>

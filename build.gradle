@@ -39,7 +39,7 @@ dependencies {
     implementation 'io.jmix.quartz:jmix-quartz-starter'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
-
+    runtimeOnly 'org.postgresql:postgresql'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

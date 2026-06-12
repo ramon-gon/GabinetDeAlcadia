@@ -5,6 +5,7 @@ import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
@@ -24,8 +25,12 @@ public class Entitat {
     @Column(name = "nom", nullable = false)
     private String nom;
 
-    @Column(name = "categoria")
-    private String categoria;
+    // ◄ CAMBIO: Reemplazamos el String por la relación ManyToMany real
+    @ManyToMany
+    @JoinTable(name = "ENTITAT_CATEGORIA_LINK",
+            joinColumns = @JoinColumn(name = "ID_ENTITAT"),
+            inverseJoinColumns = @JoinColumn(name = "ID_CATEGORIA"))
+    private List<Categoria> categorias;
 
     @Column(name = "adreça_seu")
     private String adreçaSeu;
@@ -74,12 +79,13 @@ public class Entitat {
         this.nom = nom;
     }
 
-    public String getCategoria() {
-        return categoria;
+    // ◄ CAMBIO: Nuevos Getter y Setter para la lista de categorías
+    public List<Categoria> getCategorias() {
+        return categorias;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
     }
 
     public String getAdreçaSeu() {
