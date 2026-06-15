@@ -6,7 +6,7 @@
         <instance id="entitatDc"
                   class="com.company.gabinetdealcadia.entity.Entitat">
             <fetchPlan extends="_base">
-                <property name="categorias" fetchPlan="_base"/>
+                <property name="categories" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="entitatDl"/>
         </instance>
@@ -33,9 +33,10 @@
             </responsiveSteps>
             <textField id="nomField" property="nom" label="Nom"/>
 
-            <multiSelectComboBox id="categoriasField"
-                                 property="categorias"
+            <multiSelectComboBox id="categoriesField"
+                                 property="categories"
                                  itemsContainer="categoriasDc"
+                                 itemLabelGenerator="nom"
                                  label="Categories"/>
 
             <textField id="adreçaSeuField" property="adreçaSeu" label="Adreça de la Seu"/>

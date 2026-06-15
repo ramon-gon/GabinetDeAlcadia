@@ -5,6 +5,7 @@ import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,12 +26,11 @@ public class Entitat {
     @Column(name = "nom", nullable = false)
     private String nom;
 
-    // --- ANTERIOR CAMP TEXT: El comentem perquè ara farem servir la relació real ---
-    // @Column(name = "categoria")
-    // private String categoria;
-
-    // --- NOVA RELACIÓ AFEGIDA: Many-to-Many bidireccional amb Categoria ---
-    @ManyToMany(mappedBy = "entitats")
+    // --- CAMBIO CLAVE: Definimos el @JoinTable aquí para que Entitat sea la dueña de la relación ---
+    @JoinTable(name = "ENTITAT_CATEGORIA_LINK",
+            joinColumns = @JoinColumn(name = "ENTITAT_ID", referencedColumnName = "id_entitat"),
+            inverseJoinColumns = @JoinColumn(name = "CATEGORIA_ID", referencedColumnName = "id")) // Ajusta referencedColumnName si el ID de Categoria se llama distinto
+    @ManyToMany
     private List<Categoria> categories;
 
     @Column(name = "adreça_seu")
@@ -73,6 +73,22 @@ public class Entitat {
         this.categories = categories;
     }
 
+    // --- MÈTODES DE SINCRONITZACIÓ DE LA RELACIÓ ---
+    public void addCategoria(Categoria categoria) {
+        if (this.categories == null) {
+            this.categories = new ArrayList<>();
+        }
+        if (!this.categories.contains(categoria)) {
+            this.categories.add(categoria);
+        }
+    }
+
+    public void removeCategoria(Categoria categoria) {
+        if (this.categories != null) {
+            this.categories.remove(categoria);
+        }
+    }
+
     public UUID getId() {
         return id;
     }
@@ -88,10 +104,6 @@ public class Entitat {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
-    // --- Eliminem o comentem també els vells getters/setters de categoria text ---
-    /* public String getCategoria() { return categoria; }
-       public void setCategoria(String categoria) { this.categoria = categoria; } */
 
     public String getAdreçaSeu() {
         return adreçaSeu;

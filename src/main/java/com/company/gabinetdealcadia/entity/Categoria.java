@@ -23,17 +23,17 @@ public class Categoria {
     @Column(name = "NOM", nullable = false, unique = true)
     private String nom;
 
-    // Relació Molts-a-Molts amb Contacte (Corregida clau inversa)
+    // Relació Molts-a-Molts amb Contacte
     @JoinTable(name = "CATEGORIA_CONTACTE_LINK",
             joinColumns = @JoinColumn(name = "CATEGORIA_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "CONTACTE_ID", referencedColumnName = "id_contacte")) // <--- CAMBIADO AQUÍ
+            inverseJoinColumns = @JoinColumn(name = "CONTACTE_ID", referencedColumnName = "id_contacte"))
     @ManyToMany
     private List<Contacte> contactes;
 
-    // Relació Molts-a-Molts amb Entitat (Corregida clau inversa)
+    // Relació Molts-a-Molts amb Entitat (Categoria és la PROPIETÀRIA de la relació)
     @JoinTable(name = "CATEGORIA_ENTITAT_LINK",
             joinColumns = @JoinColumn(name = "CATEGORIA_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "ENTITAT_ID", referencedColumnName = "id_entitat")) // <--- CAMBIADO AQUÍ
+            inverseJoinColumns = @JoinColumn(name = "ENTITAT_ID", referencedColumnName = "id_entitat"))
     @ManyToMany
     private List<Entitat> entitats;
 

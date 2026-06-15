@@ -7,7 +7,7 @@
         <collection id="entitatsDc"
                     class="com.company.gabinetdealcadia.entity.Entitat">
             <fetchPlan extends="_base">
-                <property name="categorias" fetchPlan="_base"/>
+                <property name="categories" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="entitatsDl" readOnly="true">
                 <query>
@@ -36,7 +36,6 @@
                     <propertyFilter property="nom"
                                     operation="CONTAINS"
                                     label="Nom Entitat"/>
-
                 </configuration>
             </configurations>
         </genericFilter>
@@ -64,6 +63,8 @@
             <columns resizable="true">
                 <column property="nom" header="Nom" autoWidth="true"/>
 
+                <column property="categories" header="Categories" autoWidth="true"/>
+
                 <column property="adreçaSeu" header="Adreça de la Seu" autoWidth="true"/>
                 <column property="codiPostal" header="Codi Postal" autoWidth="true"/>
                 <column property="poblacio" header="Població" autoWidth="true"/>
@@ -71,6 +72,7 @@
                 <column property="emailGeneral" header="Correu Electrònic General" autoWidth="true" flexGrow="1"/>
                 <column property="telefonSeu" header="Telèfon de la Seu" autoWidth="true"/>
                 <column property="comentariTelefonSeu" header="Comentaris del telèfon" autoWidth="true"/>
+
                 <column property="activa" header="Activa" autoWidth="true"/>
             </columns>
         </dataGrid>

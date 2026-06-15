@@ -16,17 +16,4 @@ import java.util.Collection;
 @ViewDescriptor("entitat-detail-view.xml")
 @EditedEntityContainer("entitatDc")
 public class EntitatDetailView extends StandardDetailView<Entitat> {
-
-    @ViewComponent
-    private MultiSelectComboBox<Categoria> categoriesField; // Ara apunta a l'entitat Categoria
-
-    @Autowired
-    private DataManager dataManager;
-
-    @Subscribe
-    public void onInit(final InitEvent event) {
-        // Carreguem totes les categories disponibles de la base de dades per al desplegable
-        categoriesField.setItems(dataManager.load(Categoria.class).all().list());
-        categoriesField.setItemLabelGenerator(Categoria::getNom);
-    }
 }
