@@ -25,12 +25,13 @@ public class Entitat {
     @Column(name = "nom", nullable = false)
     private String nom;
 
-    // ◄ CAMBIO: Reemplazamos el String por la relación ManyToMany real
-    @ManyToMany
-    @JoinTable(name = "ENTITAT_CATEGORIA_LINK",
-            joinColumns = @JoinColumn(name = "ID_ENTITAT"),
-            inverseJoinColumns = @JoinColumn(name = "ID_CATEGORIA"))
-    private List<Categoria> categorias;
+    // --- ANTERIOR CAMP TEXT: El comentem perquè ara farem servir la relació real ---
+    // @Column(name = "categoria")
+    // private String categoria;
+
+    // --- NOVA RELACIÓ AFEGIDA: Many-to-Many bidireccional amb Categoria ---
+    @ManyToMany(mappedBy = "entitats")
+    private List<Categoria> categories;
 
     @Column(name = "adreça_seu")
     private String adreçaSeu;
@@ -63,6 +64,15 @@ public class Entitat {
     public String getComentariTelefonSeu() { return comentariTelefonSeu; }
     public void setComentariTelefonSeu(String comentariTelefonSeu) { this.comentariTelefonSeu = comentariTelefonSeu; }
 
+    // --- GETTER I SETTER DE LES CATEGORIES ---
+    public List<Categoria> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Categoria> categories) {
+        this.categories = categories;
+    }
+
     public UUID getId() {
         return id;
     }
@@ -79,14 +89,9 @@ public class Entitat {
         this.nom = nom;
     }
 
-    // ◄ CAMBIO: Nuevos Getter y Setter para la lista de categorías
-    public List<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
-    }
+    // --- Eliminem o comentem també els vells getters/setters de categoria text ---
+    /* public String getCategoria() { return categoria; }
+       public void setCategoria(String categoria) { this.categoria = categoria; } */
 
     public String getAdreçaSeu() {
         return adreçaSeu;

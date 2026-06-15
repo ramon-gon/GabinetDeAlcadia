@@ -1,10 +1,10 @@
 package com.company.gabinetdealcadia.entity;
 
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -14,23 +14,28 @@ import java.util.UUID;
 public class Categoria {
 
     @JmixGeneratedValue
-    @Column(name = "ID", nullable = false)
     @Id
+    @Column(name = "ID", nullable = false)
     private UUID id;
 
+    @InstanceName
     @NotNull
-    @Column(name = "nom", nullable = false, length = 100)
+    @Column(name = "NOM", nullable = false, unique = true)
     private String nom;
 
-    // ◄ NUEVA RELACIÓN: Enlace bidireccional con Entitat
-    // El "mappedBy" debe llamarse exactamente igual que la propiedad de tipo List<Categoria> que tengas en tu clase Entitat.java (seguramente "categorias")
-    @ManyToMany(mappedBy = "categorias")
-    private List<Entitat> entitats;
-
-    // ◄ NUEVA RELACIÓN: Enlace bidireccional con Contacte
-    // El "mappedBy" debe llamarse exactamente igual que la propiedad de tipo List<Categoria> que tengas en tu clase Contacte.java (seguramente "categorias")
-    @ManyToMany(mappedBy = "categorias")
+    // Relació Molts-a-Molts amb Contacte (Corregida clau inversa)
+    @JoinTable(name = "CATEGORIA_CONTACTE_LINK",
+            joinColumns = @JoinColumn(name = "CATEGORIA_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "CONTACTE_ID", referencedColumnName = "id_contacte")) // <--- CAMBIADO AQUÍ
+    @ManyToMany
     private List<Contacte> contactes;
+
+    // Relació Molts-a-Molts amb Entitat (Corregida clau inversa)
+    @JoinTable(name = "CATEGORIA_ENTITAT_LINK",
+            joinColumns = @JoinColumn(name = "CATEGORIA_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "ENTITAT_ID", referencedColumnName = "id_entitat")) // <--- CAMBIADO AQUÍ
+    @ManyToMany
+    private List<Entitat> entitats;
 
     public UUID getId() {
         return id;
@@ -48,7 +53,13 @@ public class Categoria {
         this.nom = nom;
     }
 
-    // Geters y Seters de las nuevas relaciones para que Jmix y las pantallas puedan leerlas:
+    public List<Contacte> getContactes() {
+        return contactes;
+    }
+
+    public void setContactes(List<Contacte> contactes) {
+        this.contactes = contactes;
+    }
 
     public List<Entitat> getEntitats() {
         return entitats;
@@ -56,13 +67,5 @@ public class Categoria {
 
     public void setEntitats(List<Entitat> entitats) {
         this.entitats = entitats;
-    }
-
-    public List<Contacte> getContactes() {
-        return contactes;
-    }
-
-    public void setContactes(List<Contacte> contactes) {
-        this.contactes = contactes;
     }
 }

@@ -34,13 +34,6 @@ public class Contacte {
     @Column(name = "segon_cognom", length = 100)
     private String segon_cognom;
 
-    // ◄ NUEVO: Relación ManyToMany con la tabla intermedia de contactos
-    @ManyToMany
-    @JoinTable(name = "CONTACTE_CATEGORIA_LINK",
-            joinColumns = @JoinColumn(name = "ID_CONTACTE"),
-            inverseJoinColumns = @JoinColumn(name = "ID_CATEGORIA"))
-    private List<Categoria> categorias;
-
     @Column(name = "data_naixement")
     private LocalDate dataNaixement;
 
@@ -89,7 +82,11 @@ public class Contacte {
 
     @JoinColumn(name = "CARREC_ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Carrec carrec;
+    private Carrec carrec; // Creem la clau forana cap a l'entitat Carrec
+
+    // --- NOVA RELACIÓ AFEGIDA: Many-to-Many bidireccional amb Categoria ---
+    @ManyToMany(mappedBy = "contactes")
+    private List<Categoria> categories;
 
     public String getComentariTelefonMobil() { return comentariTelefonMobil; }
     public void setComentariTelefonMobil(String comentariTelefonMobil) { this.comentariTelefonMobil = comentariTelefonMobil; }
@@ -102,13 +99,13 @@ public class Contacte {
         this.carrec = carrec;
     }
 
-    // ◄ NUEVO: Getter y Setter para las categorías de los contactos
-    public List<Categoria> getCategorias() {
-        return categorias;
+    // --- GETTER I SETTER DE LES CATEGORIES ---
+    public List<Categoria> getCategories() {
+        return categories;
     }
 
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
+    public void setCategories(List<Categoria> categories) {
+        this.categories = categories;
     }
 
     @JmixProperty
@@ -117,6 +114,7 @@ public class Contacte {
         String n = nom != null ? nom : "";
         String p = primer_cognom != null ? primer_cognom : "";
         String s = segon_cognom != null ? segon_cognom : "";
+
         return String.format("%s %s %s", n, p, s).trim().replaceAll("\\s+", " ");
     }
 
