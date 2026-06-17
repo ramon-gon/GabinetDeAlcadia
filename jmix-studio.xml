@@ -7,6 +7,19 @@
   </component>
   <component name="JmixDataStoreSettingsManager">
     <moduleSettings>
+      <entry key="GabinetDeAlcadia.main">
+        <ModuleSettings>
+          <option name="dataStoreOptionsV2">
+            <map>
+              <entry key="main">
+                <value>
+                  <DataStoreSettingsV2 />
+                </value>
+              </entry>
+            </map>
+          </option>
+        </ModuleSettings>
+      </entry>
       <entry key="com.company.GabinetDeAlcadia.main">
         <ModuleSettings>
           <option name="dataStoreOptionsV2">
