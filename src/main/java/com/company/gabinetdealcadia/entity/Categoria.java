@@ -9,32 +9,24 @@ import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "CATEGORIA")
+@Table(name = "categoria")
 @Entity
 public class Categoria {
 
     @JmixGeneratedValue
     @Id
-    @Column(name = "ID", nullable = false)
+    @Column(name = "id_categoria", nullable = false, columnDefinition = "UUID")
     private UUID id;
 
     @InstanceName
     @NotNull
-    @Column(name = "NOM", nullable = false, unique = true)
+    @Column(name = "nom", nullable = false, unique = true)
     private String nom;
 
-    // Relació Molts-a-Molts amb Contacte
-    @JoinTable(name = "CATEGORIA_CONTACTE_LINK",
-            joinColumns = @JoinColumn(name = "CATEGORIA_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "CONTACTE_ID", referencedColumnName = "id_contacte"))
-    @ManyToMany
+    @ManyToMany(mappedBy = "categories")
     private List<Contacte> contactes;
 
-    // Relació Molts-a-Molts amb Entitat (Categoria és la PROPIETÀRIA de la relació)
-    @JoinTable(name = "CATEGORIA_ENTITAT_LINK",
-            joinColumns = @JoinColumn(name = "CATEGORIA_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "ENTITAT_ID", referencedColumnName = "id_entitat"))
-    @ManyToMany
+    @ManyToMany(mappedBy = "categories")
     private List<Entitat> entitats;
 
     public UUID getId() {

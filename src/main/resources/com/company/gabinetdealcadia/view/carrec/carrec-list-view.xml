@@ -2,20 +2,16 @@
 <view xmlns="http://jmix.io/schema/flowui/view"
       xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
       title="msg://carrecListView.title"
-      focusComponent="carrecsDataGrid">
+      focusComponent="contactesDataGrid">
     <data>
-        <collection id="carrecsDc"
-                    class="com.company.gabinetdealcadia.entity.Carrec">
+        <collection id="contactesDc"
+                    class="com.company.gabinetdealcadia.entity.Contacte">
             <fetchPlan extends="_base">
-                <property name="contacte" fetchPlan="_base">
-                    <property name="primer_cognom"/>
-                    <property name="segon_cognom"/>
-                </property>
-                <property name="entitat" fetchPlan="_base"/>
+                <property name="categories" fetchPlan="_base"/>
             </fetchPlan>
-            <loader id="carrecsDl" readOnly="true">
+            <loader id="contactesDl" readOnly="true">
                 <query>
-                    <![CDATA[select e from Carrec e]]>
+                    <![CDATA[select e from Contacte e order by e.nom asc]]>
                 </query>
             </loader>
         </collection>
@@ -33,7 +29,7 @@
     </actions>
     <layout>
         <genericFilter id="genericFilter"
-                       dataLoader="carrecsDl"
+                       dataLoader="contactesDl"
                        autoApply="false">
             <configurations>
                 <configuration id="filtrePredefinit" default="true">
@@ -44,34 +40,33 @@
                             <c:jpql>
                                 <c:where><![CDATA[
                                     lower(concat(
-                                        coalesce(e.contacte.nom, ''), ' ',
-                                        coalesce(e.contacte.primer_cognom, ''), ' ',
-                                        coalesce(e.contacte.segon_cognom, '')
+                                        coalesce(e.nom, ''), ' ',
+                                        coalesce(e.primer_cognom, ''), ' ',
+                                        coalesce(e.segon_cognom, '')
                                     )) like lower(concat('%', :cercaNomComplet, '%'))
                                 ]]></c:where>
                             </c:jpql>
                         </condition>
                     </jpqlFilter>
-
-                    <propertyFilter property="entitat.nom" operation="CONTAINS" label="Entitat"/>
                 </configuration>
             </configurations>
         </genericFilter>
 
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <startSlot>
-                <button id="createButton" action="carrecsDataGrid.createAction"/>
-                <button id="editButton" action="carrecsDataGrid.editAction"/>
-                <button id="removeButton" action="carrecsDataGrid.removeAction"/>
+                <button id="createButton" action="contactesDataGrid.createAction"/>
+                <button id="editButton" action="contactesDataGrid.editAction"/>
+                <button id="removeButton" action="contactesDataGrid.removeAction"/>
             </startSlot>
             <endSlot>
-                <simplePagination id="pagination" dataLoader="carrecsDl"/>
+                <simplePagination id="pagination" dataLoader="contactesDl"/>
             </endSlot>
         </hbox>
-        <dataGrid id="carrecsDataGrid"
+
+        <dataGrid id="contactesDataGrid"
                   width="100%"
                   minHeight="20em"
-                  dataContainer="carrecsDc"
+                  dataContainer="contactesDc"
                   columnReorderingAllowed="true">
             <actions>
                 <action id="createAction" type="list_create"/>
@@ -81,18 +76,10 @@
             <columns resizable="true">
                 <column key="nomCompletContacte" header="Contacte" autoWidth="true"/>
 
-                <column property="entitat.nom" header="Entitat" autoWidth="true"/>
-                <column property="titolCarrec" header="Títol del Càrrec" autoWidth="true"/>
+                <column key="cargosAgrupados" header="Càrrecs i Entitats" autoWidth="true" flexGrow="1"/>
 
-                <column property="vigent" header="Vigent" autoWidth="true"/>
-
-                <column property="telefonDirecte" header="Telèfon Directe" autoWidth="true"/>
-                <column property="comentariTelefon" header="Comentaris del telèfon" autoWidth="true"/>
-                <column property="emailCorporatiu" header="Correu Electrònic Corporatiu" autoWidth="true"/>
-
-                <column property="puntTrameses" header="Punt de Trameses" autoWidth="true"/>
-
-                <column property="observacionsCarrec" header="Observacions del Càrrec" autoWidth="true" flexGrow="1"/>
+                <column property="emailPersonal" header="Correu Personal" autoWidth="true"/>
+                <column property="telefonMobil" header="Telèfon Mòbil" autoWidth="true"/>
             </columns>
         </dataGrid>
         <hbox id="lookupActions" visible="false">

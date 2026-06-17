@@ -8,6 +8,7 @@ import io.jmix.core.metamodel.annotation.JmixProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,6 +34,13 @@ public class Contacte {
 
     @Column(name = "segon_cognom", length = 100)
     private String segon_cognom;
+
+    // Como ahora la relación necesita especificar el enlace, añadimos el JoinTable aquí también apuntando a id_categoria
+    @JoinTable(name = "categoria_contacte_link",
+            joinColumns = @JoinColumn(name = "contacte_id", referencedColumnName = "id_contacte"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id", referencedColumnName = "id_categoria")) // 🛠️ Corregido a id_categoria
+    @ManyToMany
+    private List<Categoria> categories;
 
     @Column(name = "data_naixement")
     private LocalDate dataNaixement;
@@ -80,13 +88,9 @@ public class Contacte {
     @Column(name = "comentari_telefon_mobil")
     private String comentariTelefonMobil;
 
-    @JoinColumn(name = "CARREC_ID")
+    @JoinColumn(name = "carrec_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Carrec carrec; // Creem la clau forana cap a l'entitat Carrec
-
-    // --- NOVA RELACIÓ AFEGIDA: Many-to-Many bidireccional amb Categoria ---
-    @ManyToMany(mappedBy = "contactes")
-    private List<Categoria> categories;
+    private Carrec carrec;
 
     public String getComentariTelefonMobil() { return comentariTelefonMobil; }
     public void setComentariTelefonMobil(String comentariTelefonMobil) { this.comentariTelefonMobil = comentariTelefonMobil; }
@@ -99,13 +103,36 @@ public class Contacte {
         this.carrec = carrec;
     }
 
-    // --- GETTER I SETTER DE LES CATEGORIES ---
     public List<Categoria> getCategories() {
         return categories;
     }
 
     public void setCategories(List<Categoria> categories) {
         this.categories = categories;
+    }
+
+    public void addCategoria(Categoria categoria) {
+        if (this.categories == null) {
+            this.categories = new ArrayList<>();
+        }
+        if (!this.categories.contains(categoria)) {
+            this.categories.add(categoria);
+            if (categoria.getContactes() == null) {
+                categoria.setContactes(new ArrayList<>());
+            }
+            if (!categoria.getContactes().contains(this)) {
+                categoria.getContactes().add(this);
+            }
+        }
+    }
+
+    public void removeCategoria(Categoria categoria) {
+        if (this.categories != null && this.categories.contains(categoria)) {
+            this.categories.remove(categoria);
+            if (categoria.getContactes() != null) {
+                categoria.getContactes().remove(this);
+            }
+        }
     }
 
     @JmixProperty

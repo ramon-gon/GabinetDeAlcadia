@@ -26,10 +26,9 @@ public class Entitat {
     @Column(name = "nom", nullable = false)
     private String nom;
 
-    // --- CAMBIO CLAVE: Definimos el @JoinTable aquí para que Entitat sea la dueña de la relación ---
-    @JoinTable(name = "ENTITAT_CATEGORIA_LINK",
-            joinColumns = @JoinColumn(name = "ENTITAT_ID", referencedColumnName = "id_entitat"),
-            inverseJoinColumns = @JoinColumn(name = "CATEGORIA_ID", referencedColumnName = "id")) // Ajusta referencedColumnName si el ID de Categoria se llama distinto
+    @JoinTable(name = "categoria_entitat_link",
+            joinColumns = @JoinColumn(name = "entitat_id", referencedColumnName = "id_entitat"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id", referencedColumnName = "id_categoria")) // 🛠️ Corregido a id_categoria
     @ManyToMany
     private List<Categoria> categories;
 
@@ -64,7 +63,6 @@ public class Entitat {
     public String getComentariTelefonSeu() { return comentariTelefonSeu; }
     public void setComentariTelefonSeu(String comentariTelefonSeu) { this.comentariTelefonSeu = comentariTelefonSeu; }
 
-    // --- GETTER I SETTER DE LES CATEGORIES ---
     public List<Categoria> getCategories() {
         return categories;
     }
@@ -73,19 +71,27 @@ public class Entitat {
         this.categories = categories;
     }
 
-    // --- MÈTODES DE SINCRONITZACIÓ DE LA RELACIÓ ---
     public void addCategoria(Categoria categoria) {
         if (this.categories == null) {
             this.categories = new ArrayList<>();
         }
         if (!this.categories.contains(categoria)) {
             this.categories.add(categoria);
+            if (categoria.getEntitats() == null) {
+                categoria.setEntitats(new ArrayList<>());
+            }
+            if (!categoria.getEntitats().contains(this)) {
+                categoria.getEntitats().add(this);
+            }
         }
     }
 
     public void removeCategoria(Categoria categoria) {
-        if (this.categories != null) {
+        if (this.categories != null && this.categories.contains(categoria)) {
             this.categories.remove(categoria);
+            if (categoria.getEntitats() != null) {
+                categoria.getEntitats().remove(this);
+            }
         }
     }
 
