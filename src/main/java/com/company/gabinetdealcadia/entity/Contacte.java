@@ -135,17 +135,18 @@ public class Contacte {
         }
     }
 
+    // 1. Aquest mantén-lo amb @InstanceName
+    @InstanceName
     @JmixProperty
     @DependsOnProperties({"nom", "primer_cognom", "segon_cognom"})
     public String getNomComplet() {
         String n = nom != null ? nom : "";
         String p = primer_cognom != null ? primer_cognom : "";
         String s = segon_cognom != null ? segon_cognom : "";
-
         return String.format("%s %s %s", n, p, s).trim().replaceAll("\\s+", " ");
     }
 
-    @InstanceName
+    // 2. Aquest treu-li l'anotació @InstanceName
     public String getDisplayName() {
         return String.format("%s %s", nom != null ? nom : "", primer_cognom != null ? primer_cognom : "").trim();
     }

@@ -36,7 +36,7 @@ public interface CRUDAccessRole {
     void viewPermissions();
 
     // 4. Permisos de Menú
-    @MenuPolicy(menuIds = {"Carrec.list", "Contacte.list", "Entitat.list", "EnviarCorreu"})
+    @MenuPolicy(menuIds = {"Contacte.list", "Entitat.list", "EnviarCorreu"})
     void menuPermissions();
 
     // 5. Permís específic per a l'enviament de correus

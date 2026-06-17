@@ -32,6 +32,6 @@ public interface ReadAccessRole {
     void viewPermissions();
 
     // 4. PERMISOS DE MENÚ: Això és el que et farà aparèixer els ítems al menú lateral
-    @MenuPolicy(menuIds = {"Carrec.list", "Entitat.list", "Contacte.list"})
+    @MenuPolicy(menuIds = {"Entitat.list", "Contacte.list"})
     void menuPermissions();
 }

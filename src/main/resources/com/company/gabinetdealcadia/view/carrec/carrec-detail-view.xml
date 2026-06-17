@@ -6,32 +6,18 @@
         <instance id="carrecDc"
                   class="com.company.gabinetdealcadia.entity.Carrec">
             <fetchPlan extends="_base">
-                <property name="contacte" fetchPlan="_base">
-                    <property name="primer_cognom"/>
-                    <property name="segon_cognom"/>
-                </property>
-                <property name="entitat" fetchPlan="_base">
-                    <property name="nom"/>
-                </property>
+                <property name="contacte" fetchPlan="_base"/>
+                <property name="entitat" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="carrecDl"/>
         </instance>
-
         <collection id="contactesDc" class="com.company.gabinetdealcadia.entity.Contacte">
-            <fetchPlan extends="_base">
-                <property name="primer_cognom"/>
-                <property name="segon_cognom"/>
-            </fetchPlan>
-            <loader id="contactesDl">
-                <query><![CDATA[select e from Contacte e order by e.nom, e.primer_cognom]]></query>
+            <loader id="contactesDl" readOnly="true">
+                <query><![CDATA[select e from Contacte e order by e.nom]]></query>
             </loader>
         </collection>
-
         <collection id="entitatsDc" class="com.company.gabinetdealcadia.entity.Entitat">
-            <fetchPlan extends="_base">
-                <property name="nom"/>
-            </fetchPlan>
-            <loader id="entitatsDl">
+            <loader id="entitatsDl" readOnly="true">
                 <query><![CDATA[select e from Entitat e order by e.nom]]></query>
             </loader>
         </collection>
@@ -40,10 +26,12 @@
     <facets>
         <dataLoadCoordinator auto="true"/>
     </facets>
+
     <actions>
         <action id="saveCloseAction" type="detail_saveClose"/>
         <action id="closeAction" type="detail_close"/>
     </actions>
+
     <layout>
         <formLayout id="form" dataContainer="carrecDc">
             <responsiveSteps>
@@ -53,33 +41,45 @@
 
             <entityComboBox id="contacteField"
                             property="contacte"
-                            itemsContainer="contactesDc"
                             label="Contacte"
-                            required="true"/>
+                            itemsContainer="contactesDc"/>
 
             <entityComboBox id="entitatField"
                             property="entitat"
-                            itemsContainer="entitatsDc"
                             label="Entitat"
-                            required="true"/>
+                            itemsContainer="entitatsDc"/>
 
-            <textField id="titolCarrecField" property="titolCarrec" label="Títol del Càrrec"/>
-            <checkbox id="vigentField" property="vigent" label="Vigent"/>
+            <textField id="titolCarrecField"
+                       property="titolCarrec"
+                       label="Títol Càrrec"/>
+
+            <checkbox id="vigentField"
+                      property="vigent"
+                      label="Vigent"/>
 
             <textField id="telefonDirecteField"
                        property="telefonDirecte"
-                       label="Telèfon Directe"
-                       allowedCharPattern="[0-9]"/>
+                       label="Telèfon Directe"/>
 
-            <textField id="comentariTelefonField" property="comentariTelefon" label="Comentaris del telèfon"/>
+            <textField id="emailCorporatiuField"
+                       property="emailCorporatiu"
+                       label="Email Corporatiu"/>
 
-            <textField id="emailCorporatiuField" property="emailCorporatiu" label="Correu Electrònic Corporatiu"/>
+            <checkbox id="puntTramesesField"
+                      property="puntTrameses"
+                      label="Punt de Trameses"/>
 
-            <checkbox id="puntTramesesField" property="puntTrameses" label="Punt de Trameses"/>
+            <textField id="comentariTelefonField"
+                       property="comentariTelefon"
+                       label="Comentari Telèfon"/>
 
-            <textArea id="observacionsCarrecField" height="9.5em" property="observacionsCarrec" label="Observacions del Càrrec" colspan="2"/>
+            <textArea id="observacionsCarrecField"
+                      height="9.5em"
+                      property="observacionsCarrec"
+                      label="Observacions"/>
         </formLayout>
-        <hbox id="detailActions">
+
+        <hbox id="detailActions" classNames="buttons-panel">
             <button id="saveAndCloseButton" action="saveCloseAction"/>
             <button id="closeButton" action="closeAction"/>
         </hbox>

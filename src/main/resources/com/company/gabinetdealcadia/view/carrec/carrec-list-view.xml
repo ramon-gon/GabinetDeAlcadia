@@ -1,72 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
       xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
-      title="msg://carrecListView.title"
-      focusComponent="contactesDataGrid">
+      title="Carrecs"
+      focusComponent="carrecsDataGrid">
     <data>
-        <collection id="contactesDc"
-                    class="com.company.gabinetdealcadia.entity.Contacte">
+        <collection id="carrecsDc" class="com.company.gabinetdealcadia.entity.Carrec">
             <fetchPlan extends="_base">
-                <property name="categories" fetchPlan="_base"/>
+                <property name="contacte" fetchPlan="_base"/>
+                <property name="entitat" fetchPlan="_base"/>
             </fetchPlan>
-            <loader id="contactesDl" readOnly="true">
-                <query>
-                    <![CDATA[select e from Contacte e order by e.nom asc]]>
-                </query>
+            <loader id="carrecsDl" readOnly="true">
+                <query><![CDATA[select e from Carrec e]]></query>
             </loader>
         </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
-        <urlQueryParameters>
-            <genericFilter component="genericFilter"/>
-            <pagination component="pagination"/>
-        </urlQueryParameters>
     </facets>
-    <actions>
-        <action id="selectAction" type="lookup_select"/>
-        <action id="discardAction" type="lookup_discard"/>
-    </actions>
     <layout>
         <genericFilter id="genericFilter"
-                       dataLoader="contactesDl"
-                       autoApply="false">
+                       dataLoader="carrecsDl"
+                       autoApply="true">
             <configurations>
-                <configuration id="filtrePredefinit" default="true">
+                <configuration id="filtreCarrecs" default="true">
                     <jpqlFilter parameterClass="java.lang.String"
-                                label="Contacte"
+                                label="Cerca Nom"
                                 parameterName="cercaNomComplet">
                         <condition>
                             <c:jpql>
                                 <c:where><![CDATA[
                                     lower(concat(
-                                        coalesce(e.nom, ''), ' ',
-                                        coalesce(e.primer_cognom, ''), ' ',
-                                        coalesce(e.segon_cognom, '')
+                                        coalesce({E}.contacte.nom, ''), ' ',
+                                        coalesce({E}.contacte.primer_cognom, ''), ' ',
+                                        coalesce({E}.contacte.segon_cognom, '')
                                     )) like lower(concat('%', :cercaNomComplet, '%'))
                                 ]]></c:where>
                             </c:jpql>
                         </condition>
                     </jpqlFilter>
+
+                    <propertyFilter property="entitat.nom"
+                                    operation="CONTAINS"
+                                    label="Nom Entitat"/>
                 </configuration>
             </configurations>
         </genericFilter>
 
-        <hbox id="buttonsPanel" classNames="buttons-panel">
-            <startSlot>
-                <button id="createButton" action="contactesDataGrid.createAction"/>
-                <button id="editButton" action="contactesDataGrid.editAction"/>
-                <button id="removeButton" action="contactesDataGrid.removeAction"/>
-            </startSlot>
-            <endSlot>
-                <simplePagination id="pagination" dataLoader="contactesDl"/>
-            </endSlot>
+        <hbox classNames="buttons-panel">
+            <button id="createButton" action="carrecsDataGrid.createAction"/>
+            <button id="editButton" action="carrecsDataGrid.editAction"/>
+            <button id="removeButton" action="carrecsDataGrid.removeAction"/>
         </hbox>
 
-        <dataGrid id="contactesDataGrid"
+        <dataGrid id="carrecsDataGrid"
+                  dataContainer="carrecsDc"
                   width="100%"
-                  minHeight="20em"
-                  dataContainer="contactesDc"
+                  height="100%"
                   columnReorderingAllowed="true">
             <actions>
                 <action id="createAction" type="list_create"/>
@@ -74,17 +63,15 @@
                 <action id="removeAction" type="list_remove"/>
             </actions>
             <columns resizable="true">
-                <column key="nomCompletContacte" header="Contacte" autoWidth="true"/>
+                <column property="titolCarrec" header="Títol" autoWidth="true"/>
+                <column property="contacte" header="Contacte" autoWidth="true"/>
+                <column property="entitat" header="Entitat" autoWidth="true"/>
+                <column property="telefonDirecte" header="Telèfon" autoWidth="true"/>
+                <column property="emailCorporatiu" header="Email" autoWidth="true"/>
+                <column property="puntTrameses" header="Punt de Trameses" autoWidth="true"/>
+                <column property="vigent" header="Vigent" autoWidth="true"/>
 
-                <column key="cargosAgrupados" header="Càrrecs i Entitats" autoWidth="true" flexGrow="1"/>
-
-                <column property="emailPersonal" header="Correu Personal" autoWidth="true"/>
-                <column property="telefonMobil" header="Telèfon Mòbil" autoWidth="true"/>
             </columns>
         </dataGrid>
-        <hbox id="lookupActions" visible="false">
-            <button id="selectButton" action="selectAction"/>
-            <button id="discardButton" action="discardAction"/>
-        </hbox>
     </layout>
 </view>
