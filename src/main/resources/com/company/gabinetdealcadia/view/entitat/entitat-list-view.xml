@@ -65,6 +65,7 @@
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <startSlot>
                 <button id="createButton" action="entitatsDataGrid.createAction"/>
+                <button id="readButton" action="entitatsDataGrid.readAction"/>
                 <button id="editButton" action="entitatsDataGrid.editAction"/>
                 <button id="removeButton" action="entitatsDataGrid.removeAction"/>
             </startSlot>
@@ -80,6 +81,7 @@
                   columnReorderingAllowed="true">
             <actions>
                 <action id="createAction" type="list_create"/>
+                <action id="readAction" type="list_read"/>
                 <action id="editAction" type="list_edit"/>
                 <action id="removeAction" type="list_remove"/>
             </actions>

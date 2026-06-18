@@ -15,9 +15,9 @@
             <loader id="contactesDl" readOnly="true">
                 <query>
                     <![CDATA[
-                    select e from Contacte e
-                    left join fetch e.categories
-                    ]]>
+        select distinct e from Contacte e
+        left join fetch e.categories
+        ]]>
                 </query>
             </loader>
         </collection>
@@ -108,6 +108,7 @@
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <startSlot>
                 <button id="createButton" action="contactesDataGrid.createAction"/>
+                <button id="readButton" action="contactesDataGrid.readAction"/>
                 <button id="editButton" action="contactesDataGrid.editAction"/>
                 <button id="removeButton" action="contactesDataGrid.removeAction"/>
             </startSlot>
@@ -122,6 +123,7 @@
                   columnReorderingAllowed="true">
             <actions>
                 <action id="createAction" type="list_create"/>
+                <action id="readAction" type="list_read"/>
                 <action id="editAction" type="list_edit"/>
                 <action id="removeAction" type="list_remove"/>
             </actions>

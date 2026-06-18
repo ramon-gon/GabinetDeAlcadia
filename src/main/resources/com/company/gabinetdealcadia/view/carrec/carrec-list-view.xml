@@ -66,6 +66,7 @@
 
         <hbox classNames="buttons-panel">
             <button id="createButton" action="carrecsDataGrid.createAction"/>
+            <button id="readButton" action="carrecsDataGrid.readAction"/>
             <button id="editButton" action="carrecsDataGrid.editAction"/>
             <button id="removeButton" action="carrecsDataGrid.removeAction"/>
         </hbox>
@@ -77,6 +78,7 @@
                   columnReorderingAllowed="true">
             <actions>
                 <action id="createAction" type="list_create"/>
+                <action id="readAction" type="list_read"/>
                 <action id="editAction" type="list_edit"/>
                 <action id="removeAction" type="list_remove"/>
             </actions>

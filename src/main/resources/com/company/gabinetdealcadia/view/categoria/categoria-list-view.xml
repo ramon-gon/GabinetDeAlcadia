@@ -50,8 +50,7 @@
                             </c:jpql>
                         </condition>
                         <entityComboBox metaClass="Categoria"
-                                        itemsContainer="filtreCategoriasDc"
-                                        searchStringFormat="%s%%"/>
+                                        itemsContainer="filtreCategoriasDc"/>
                     </jpqlFilter>
                 </configuration>
             </configurations>
@@ -60,6 +59,7 @@
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <startSlot>
                 <button id="createButton" action="categoriasDataGrid.createAction"/>
+                <button id="readButton" action="categoriasDataGrid.readAction"/>
                 <button id="editButton" action="categoriasDataGrid.editAction"/>
                 <button id="removeButton" action="categoriasDataGrid.removeAction"/>
             </startSlot>
@@ -75,6 +75,7 @@
                   columnReorderingAllowed="true">
             <actions>
                 <action id="createAction" type="list_create"/>
+                <action id="readAction" type="list_read"/>
                 <action id="editAction" type="list_edit"/>
                 <action id="removeAction" type="list_remove"/>
             </actions>
