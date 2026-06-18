@@ -7,13 +7,17 @@
         <collection id="contactesDc"
                     class="com.company.gabinetdealcadia.entity.Contacte">
             <fetchPlan extends="_base">
+                <property name="categories" fetchPlan="_base"/>
                 <property name="carrec" fetchPlan="_base">
                     <property name="entitat" fetchPlan="_base"/>
                 </property>
             </fetchPlan>
             <loader id="contactesDl" readOnly="true">
                 <query>
-                    <![CDATA[select e from Contacte e]]>
+                    <![CDATA[
+                    select e from Contacte e
+                    left join fetch e.categories
+                    ]]>
                 </query>
             </loader>
         </collection>
@@ -24,6 +28,16 @@
             <loader id="entitatsDl" readOnly="true">
                 <query>
                     <![CDATA[select e from Entitat e order by e.nom]]>
+                </query>
+            </loader>
+        </collection>
+
+        <collection id="categoriasDc"
+                    class="com.company.gabinetdealcadia.entity.Categoria">
+            <fetchPlan extends="_base"/>
+            <loader id="categoriasDl" readOnly="true">
+                <query>
+                    <![CDATA[select c from Categoria c order by c.nom]]>
                 </query>
             </loader>
         </collection>
@@ -72,6 +86,22 @@
                         <entityComboBox metaClass="Entitat"
                                         itemsContainer="entitatsDc"/>
                     </jpqlFilter>
+
+                    <jpqlFilter parameterClass="java.util.UUID"
+                                label="Filtra per Categoria"
+                                parameterName="categoriaSeleccionada">
+                        <condition>
+                            <c:jpql>
+                                <c:where><![CDATA[
+                                    exists (select cat from e.categories cat where cat.id = :categoriaSeleccionada)
+                                    or
+                                    exists (select c from Carrec c join c.entitat ent join ent.categories entCat where c.contacte = e and entCat.id = :categoriaSeleccionada)
+                                ]]></c:where>
+                            </c:jpql>
+                        </condition>
+                        <entityComboBox metaClass="Categoria"
+                                        itemsContainer="categoriasDc"/>
+                    </jpqlFilter>
                 </configuration>
             </configurations>
         </genericFilter>
@@ -97,8 +127,8 @@
             </actions>
             <columns resizable="true">
                 <column key="nomcompletcontacte" header="Nom del Contacte" autoWidth="true"/>
-
                 <column key="entitatpertanyent" header="Entitat" autoWidth="true"/>
+                <column key="categoriesColumn" header="Categories" autoWidth="true"/>
 
                 <column property="sexe" header="Sexe" autoWidth="true"/>
                 <column property="dataNaixement" header="Data de Naixement" autoWidth="true"/>
