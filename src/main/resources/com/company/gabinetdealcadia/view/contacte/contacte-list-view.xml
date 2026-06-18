@@ -66,12 +66,11 @@
                                 parameterName="entitatSeleccionada">
                         <condition>
                             <c:jpql>
-                                <c:where><![CDATA[e.carrec.entitat.id = :entitatSeleccionada]]></c:where>
+                                <c:where><![CDATA[exists (select c from Carrec c where c.contacte = e and c.entitat.id = :entitatSeleccionada)]]></c:where>
                             </c:jpql>
                         </condition>
                         <entityComboBox metaClass="Entitat"
-                                        itemsContainer="entitatsDc"
-                                        searchStringFormat="%s%%"/>
+                                        itemsContainer="entitatsDc"/>
                     </jpqlFilter>
                 </configuration>
             </configurations>
@@ -98,7 +97,9 @@
             </actions>
             <columns resizable="true">
                 <column key="nomcompletcontacte" header="Nom del Contacte" autoWidth="true"/>
+
                 <column key="entitatpertanyent" header="Entitat" autoWidth="true"/>
+
                 <column property="sexe" header="Sexe" autoWidth="true"/>
                 <column property="dataNaixement" header="Data de Naixement" autoWidth="true"/>
                 <column property="nomConjuge" header="Nom del Cònjuge" autoWidth="true"/>
