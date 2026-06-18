@@ -1,4 +1,4 @@
-package com.company.gabinetdealcadia.app;
+package com.company.gabinetdealcadia.service;
 
 import com.company.gabinetdealcadia.entity.Contacte;
 import org.springframework.stereotype.Component;
