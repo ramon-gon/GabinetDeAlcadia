@@ -39,16 +39,25 @@
                 <textField id="primerCognomField" property="primer_cognom" label="Primer Cognom"/>
                 <textField id="segonCognomField" property="segon_cognom" label="Segon Cognom"/>
 
-                <textField id="carrecEntitatNomField" label="Entitat" readOnly="true"/>
+                <textArea id="carrecEntitatNomField"
+                          label="Entitats Vinculades"
+                          readOnly="true"
+                          minHeight="4em"/>
 
-                <textField id="entitatCategoriesField" label="Categories de l'Entitat" readOnly="true"/>
+                <textArea id="entitatCategoriesField"
+                          label="Categories de les Entitats"
+                          readOnly="true"
+                          minHeight="4em"/>
 
                 <multiSelectComboBox id="categoriesField"
                                      property="categories"
                                      itemsContainer="categoriasDc"
                                      label="Categories del Contacte"/>
 
-                <textField id="carrecTitolField" label="Títol del Càrrec" readOnly="true"/>
+                <textArea id="carrecTitolField"
+                          label="Títols dels Càrrecs"
+                          readOnly="true"
+                          minHeight="4em"/>
 
                 <select id="sexeField" property="sexe" label="Sexe"/>
                 <datePicker id="dataNaixementField" property="dataNaixement" label="Data de Naixement"/>
@@ -65,7 +74,7 @@
                 </responsiveSteps>
                 <textField id="nomConjugeField" property="nomConjuge" label="Nom del Cònjuge"/>
                 <textField id="primerCognomConjugeField" property="primerCognomConjuge" label="Primer Cognom"/>
-                <textField id="segonCognomConjugeField" property="segonCognomConjuge" label="Segon Cognom"/>
+                <textField id="segonCognomConjugeField" property="segon_cognom" label="Segon Cognom"/>
                 <select id="sexeConjugeField" property="sexeConjuge" label="Sexe del Cònjuge"/>
             </formLayout>
 
