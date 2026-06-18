@@ -7,13 +7,23 @@
         <collection id="contactesDc"
                     class="com.company.gabinetdealcadia.entity.Contacte">
             <fetchPlan extends="_base">
-                <property name="carrec">
+                <property name="carrec" fetchPlan="_base">
                     <property name="entitat" fetchPlan="_base"/>
                 </property>
             </fetchPlan>
             <loader id="contactesDl" readOnly="true">
                 <query>
                     <![CDATA[select e from Contacte e]]>
+                </query>
+            </loader>
+        </collection>
+
+        <collection id="entitatsDc"
+                    class="com.company.gabinetdealcadia.entity.Entitat">
+            <fetchPlan extends="_base"/>
+            <loader id="entitatsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Entitat e order by e.nom]]>
                 </query>
             </loader>
         </collection>
@@ -50,6 +60,19 @@
                             </c:jpql>
                         </condition>
                     </jpqlFilter>
+
+                    <jpqlFilter parameterClass="java.util.UUID"
+                                label="Filtra per Entitat"
+                                parameterName="entitatSeleccionada">
+                        <condition>
+                            <c:jpql>
+                                <c:where><![CDATA[e.carrec.entitat.id = :entitatSeleccionada]]></c:where>
+                            </c:jpql>
+                        </condition>
+                        <entityComboBox metaClass="Entitat"
+                                        itemsContainer="entitatsDc"
+                                        searchStringFormat="%s%%"/>
+                    </jpqlFilter>
                 </configuration>
             </configurations>
         </genericFilter>
@@ -74,16 +97,12 @@
                 <action id="removeAction" type="list_remove"/>
             </actions>
             <columns resizable="true">
-                <column key="nomCompletContacte" header="Nom del Contacte" autoWidth="true"/>
-
-                <column key="entitatPertanyent" header="Entitat" autoWidth="true"/>
-
+                <column key="nomcompletcontacte" header="Nom del Contacte" autoWidth="true"/>
+                <column key="entitatpertanyent" header="Entitat" autoWidth="true"/>
                 <column property="sexe" header="Sexe" autoWidth="true"/>
                 <column property="dataNaixement" header="Data de Naixement" autoWidth="true"/>
-
-                <column key="nomCompletConjuge" header="Nom del Cònjuge" autoWidth="true"/>
+                <column property="nomConjuge" header="Nom del Cònjuge" autoWidth="true"/>
                 <column property="sexeConjuge" header="Sexe del Cònjuge" autoWidth="true"/>
-
                 <column property="emailPersonal" header="Correu Electrònic Personal" autoWidth="true"/>
                 <column property="telefonMobil" header="Telèfon Mòbil" autoWidth="true"/>
                 <column property="comentariTelefonMobil" header="Comentaris del telèfon" autoWidth="true"/>

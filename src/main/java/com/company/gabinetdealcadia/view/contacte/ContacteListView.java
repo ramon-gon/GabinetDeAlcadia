@@ -19,17 +19,16 @@ public class ContacteListView extends StandardListView<Contacte> {
     @Autowired
     private CarrecService carrecService;
 
-    // 1. Renderer per al Nom Complet del Contacte
-    @Supply(to = "contactesDataGrid.nomCompletContacte", subject = "renderer")
+    // 1. renderer per al nom complet del contacte (utilitza la key "nomcompletcontacte")
+    @Supply(to = "contactesDataGrid.nomcompletcontacte", subject = "renderer")
     private Renderer<Contacte> nomCompletContacteRenderer() {
         return new TextRenderer<>(c -> carrecService.formatarNomComplet(c));
     }
 
-    // 2. NOU: Renderer per a l'Entitat obtinguda a través del Càrrec vigent
-    @Supply(to = "contactesDataGrid.entitatPertanyent", subject = "renderer")
+    // 2. renderer per a l'entitat obtinguda a través del càrrec vigent (utilitza la key "entitatpertanyent")
+    @Supply(to = "contactesDataGrid.entitatpertanyent", subject = "renderer")
     private Renderer<Contacte> entitatPertanyentRenderer() {
         return new TextRenderer<>(contacte -> {
-            // Cridem al servei per obtenir el nom de l'entitat vigent d'aquest contacte
             String nomEntitat = carrecService.obtenirNomEntitatVigent(contacte);
             return nomEntitat != null ? nomEntitat : "";
         });

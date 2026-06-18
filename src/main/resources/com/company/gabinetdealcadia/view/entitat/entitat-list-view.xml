@@ -15,6 +15,16 @@
                 </query>
             </loader>
         </collection>
+
+        <collection id="filtreCategoriesDc"
+                    class="com.company.gabinetdealcadia.entity.Categoria">
+            <fetchPlan extends="_base"/>
+            <loader id="filtreCategoriesDl" readOnly="true">
+                <query>
+                    <![CDATA[select c from Categoria c order by c.nom]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -37,9 +47,17 @@
                                     operation="CONTAINS"
                                     label="Nom Entitat"/>
 
-                    <propertyFilter property="categories.nom"
-                                    operation="CONTAINS"
-                                    label="Categoria"/>
+                    <jpqlFilter parameterClass="java.util.UUID"
+                                label="Filtra per Categoria"
+                                parameterName="categoriaSeleccionada">
+                        <condition>
+                            <c:jpql>
+                                <c:where><![CDATA[exists (select c from e.categories c where c.id = :categoriaSeleccionada)]]></c:where>
+                            </c:jpql>
+                        </condition>
+                        <entityComboBox metaClass="Categoria"
+                                        itemsContainer="filtreCategoriesDc"/>
+                    </jpqlFilter>
                 </configuration>
             </configurations>
         </genericFilter>

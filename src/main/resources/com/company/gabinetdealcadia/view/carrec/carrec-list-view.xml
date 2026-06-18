@@ -13,6 +13,16 @@
                 <query><![CDATA[select e from Carrec e]]></query>
             </loader>
         </collection>
+
+        <collection id="filtreEntitatsDc"
+                    class="com.company.gabinetdealcadia.entity.Entitat">
+            <fetchPlan extends="_base"/>
+            <loader id="filtreEntitatsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Entitat e order by e.nom]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -20,11 +30,11 @@
     <layout>
         <genericFilter id="genericFilter"
                        dataLoader="carrecsDl"
-                       autoApply="true">
+                       autoApply="false">
             <configurations>
                 <configuration id="filtreCarrecs" default="true">
                     <jpqlFilter parameterClass="java.lang.String"
-                                label="Cerca Nom"
+                                label="Cerca Nom Contacte"
                                 parameterName="cercaNomComplet">
                         <condition>
                             <c:jpql>
@@ -39,9 +49,17 @@
                         </condition>
                     </jpqlFilter>
 
-                    <propertyFilter property="entitat.nom"
-                                    operation="CONTAINS"
-                                    label="Nom Entitat"/>
+                    <jpqlFilter parameterClass="java.util.UUID"
+                                label="Filtra per Entitat"
+                                parameterName="entitatSeleccionada">
+                        <condition>
+                            <c:jpql>
+                                <c:where><![CDATA[{E}.entitat.id = :entitatSeleccionada]]></c:where>
+                            </c:jpql>
+                        </condition>
+                        <entityComboBox metaClass="Entitat"
+                                        itemsContainer="filtreEntitatsDc"/>
+                    </jpqlFilter>
                 </configuration>
             </configurations>
         </genericFilter>
@@ -70,7 +88,6 @@
                 <column property="emailCorporatiu" header="Email" autoWidth="true"/>
                 <column property="puntTrameses" header="Punt de Trameses" autoWidth="true"/>
                 <column property="vigent" header="Vigent" autoWidth="true"/>
-
             </columns>
         </dataGrid>
     </layout>
