@@ -111,6 +111,8 @@
                 <button id="readButton" action="contactesDataGrid.readAction"/>
                 <button id="editButton" action="contactesDataGrid.editAction"/>
                 <button id="removeButton" action="contactesDataGrid.removeAction"/>
+
+                <button id="exportaExcelBtn" action="contactesDataGrid.excelExport"/>
             </startSlot>
             <endSlot>
                 <simplePagination id="pagination" dataLoader="contactesDl"/>
@@ -126,6 +128,8 @@
                 <action id="readAction" type="list_read"/>
                 <action id="editAction" type="list_edit"/>
                 <action id="removeAction" type="list_remove"/>
+
+                <action id="excelExport" type="grdexp_excelExport"/>
             </actions>
             <columns resizable="true">
                 <column key="nomcompletcontacte" header="Nom del Contacte" autoWidth="true"/>
@@ -134,7 +138,7 @@
 
                 <column property="sexe" header="Sexe" autoWidth="true"/>
                 <column property="dataNaixement" header="Data de Naixement" autoWidth="true"/>
-                <column property="nomConjuge" header="Nom del Cònjuge" autoWidth="true"/>
+                <column property="nomConjuge" header="Nom delamp Cònjuge" autoWidth="true"/>
                 <column property="sexeConjuge" header="Sexe del Cònjuge" autoWidth="true"/>
                 <column property="emailPersonal" header="Correu Electrònic Personal" autoWidth="true"/>
                 <column property="telefonMobil" header="Telèfon Mòbil" autoWidth="true"/>

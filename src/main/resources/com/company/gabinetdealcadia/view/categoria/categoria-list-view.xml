@@ -62,6 +62,9 @@
                 <button id="readButton" action="categoriasDataGrid.readAction"/>
                 <button id="editButton" action="categoriasDataGrid.editAction"/>
                 <button id="removeButton" action="categoriasDataGrid.removeAction"/>
+
+                <!-- 🛠️ EL BOTÓN DE EXCEL ENLAZADO A LA ACCIÓN DE LA TABLA -->
+                <button id="exportaExcelBtn" action="categoriasDataGrid.excelExport"/>
             </startSlot>
             <endSlot>
                 <simplePagination id="pagination" dataLoader="categoriasDl"/>
@@ -78,6 +81,9 @@
                 <action id="readAction" type="list_read"/>
                 <action id="editAction" type="list_edit"/>
                 <action id="removeAction" type="list_remove"/>
+
+                <!-- 🛠️ ACCIÓN NATIVA DE JMIX QUE HACE TODO EL TRABAJO POR DETRÁS -->
+                <action id="excelExport" type="grdexp_excelExport"/>
             </actions>
             <columns resizable="true">
                 <column property="nom" header="Nom de la Categoria" autoWidth="true"/>

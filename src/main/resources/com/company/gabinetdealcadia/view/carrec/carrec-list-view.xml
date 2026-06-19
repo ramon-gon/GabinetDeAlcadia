@@ -69,6 +69,8 @@
             <button id="readButton" action="carrecsDataGrid.readAction"/>
             <button id="editButton" action="carrecsDataGrid.editAction"/>
             <button id="removeButton" action="carrecsDataGrid.removeAction"/>
+
+            <button id="exportaExcelBtn" action="carrecsDataGrid.excelExport"/>
         </hbox>
 
         <dataGrid id="carrecsDataGrid"
@@ -81,6 +83,8 @@
                 <action id="readAction" type="list_read"/>
                 <action id="editAction" type="list_edit"/>
                 <action id="removeAction" type="list_remove"/>
+
+                <action id="excelExport" type="grdexp_excelExport"/>
             </actions>
             <columns resizable="true">
                 <column property="titolCarrec" header="Títol" autoWidth="true"/>

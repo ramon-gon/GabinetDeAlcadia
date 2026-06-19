@@ -11,7 +11,7 @@
             </fetchPlan>
             <loader id="entitatsDl" readOnly="true">
                 <query>
-                    <![CDATA[select e from Entitat e order by e.nom asc]]>
+                    <![CDATA[select e from Entitat e]]>
                 </query>
             </loader>
         </collection>
@@ -68,6 +68,8 @@
                 <button id="readButton" action="entitatsDataGrid.readAction"/>
                 <button id="editButton" action="entitatsDataGrid.editAction"/>
                 <button id="removeButton" action="entitatsDataGrid.removeAction"/>
+
+                <button id="exportaExcelBtn" action="entitatsDataGrid.excelExport"/>
             </startSlot>
             <endSlot>
                 <simplePagination id="pagination" dataLoader="entitatsDl"/>
@@ -84,11 +86,13 @@
                 <action id="readAction" type="list_read"/>
                 <action id="editAction" type="list_edit"/>
                 <action id="removeAction" type="list_remove"/>
+
+                <action id="excelExport" type="grdexp_excelExport"/>
             </actions>
             <columns resizable="true">
                 <column property="nom" header="Nom" autoWidth="true"/>
 
-                <column key="presidentColumn" header="President / a" autoWidth="true"/>
+                <column key="presidentColumn" header="President" autoWidth="true"/>
 
                 <column key="categoriesColumn" header="Categories" autoWidth="true"/>
 
