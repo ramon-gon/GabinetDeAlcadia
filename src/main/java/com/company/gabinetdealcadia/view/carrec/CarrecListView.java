@@ -1,14 +1,15 @@
 package com.company.gabinetdealcadia.view.carrec;
 
 import com.company.gabinetdealcadia.entity.Carrec;
+import com.company.gabinetdealcadia.service.DataGridService; // 🛠️ Importamos el servicio centralizado
 import com.company.gabinetdealcadia.view.main.MainView;
 import com.vaadin.flow.component.grid.ItemClickEvent;
 import com.vaadin.flow.data.renderer.Renderer;
 import com.vaadin.flow.data.renderer.TextRenderer;
 import com.vaadin.flow.router.Route;
-import io.jmix.flowui.action.list.ReadAction;
 import io.jmix.flowui.component.grid.DataGrid;
 import io.jmix.flowui.view.*;
+import org.springframework.beans.factory.annotation.Autowired; // 🛠️ Importamos Autowired para Spring
 
 @Route(value = "carrecs", layout = MainView.class)
 @ViewController(id = "Carrec.list")
@@ -17,7 +18,9 @@ import io.jmix.flowui.view.*;
 @DialogMode(width = "64em")
 public class CarrecListView extends StandardListView<Carrec> {
 
-    // Inyectamos el componente de la tabla de forma correcta
+    @Autowired
+    private DataGridService dataGridService; // 🛠️ Inyectamos el servicio centralizado
+
     @ViewComponent
     private DataGrid<Carrec> carrecsDataGrid;
 
@@ -33,15 +36,7 @@ public class CarrecListView extends StandardListView<Carrec> {
 
     @Subscribe("carrecsDataGrid")
     public void onCarrecsDataGridItemDoubleClick(final ItemClickEvent<Carrec> event) {
-        if (event.getClickCount() == 2 && event.getItem() != null) {
-            // 1. Forzamos la selección del elemento sobre el que se hizo doble clic
-            carrecsDataGrid.select(event.getItem());
-
-            // 2. Ahora sí, buscamos la acción y la ejecutamos de forma segura
-            ReadAction<Carrec> readAction = (ReadAction<Carrec>) carrecsDataGrid.getAction("readAction");
-            if (readAction != null) {
-                readAction.execute();
-            }
-        }
+        // 🛠️ Delegamos toda la lógica repetitiva en una sola línea limpia
+        dataGridService.handleItemDoubleClick(event, carrecsDataGrid);
     }
 }
