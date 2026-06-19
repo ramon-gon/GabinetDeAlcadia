@@ -10,6 +10,16 @@
             </fetchPlan>
             <loader id="entitatDl"/>
         </instance>
+
+        <collection id="categoriesDc"
+                    class="com.company.gabinetdealcadia.entity.Categoria">
+            <fetchPlan extends="_base"/>
+            <loader id="categoriesDl" readOnly="true">
+                <query>
+                    <![CDATA[select c from Categoria c order by c.nom asc]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -24,11 +34,15 @@
                 <responsiveStep minWidth="0" columns="1"/>
                 <responsiveStep minWidth="40em" columns="2"/>
             </responsiveSteps>
+
             <textField id="nomField" property="nom" label="Nom"/>
+
+            <textField id="presidentField" label="President / a" readOnly="true"/>
 
             <multiSelectComboBox id="categoriesField"
                                  dataContainer="entitatDc"
                                  property="categories"
+                                 itemsContainer="categoriesDc"
                                  label="Categories"/>
 
             <textField id="adreçaSeuField" property="adreçaSeu" label="Adreça de la Seu"/>
