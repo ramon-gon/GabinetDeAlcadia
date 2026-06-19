@@ -186,4 +186,30 @@ public class ContacteService {
 
         return new DetallCampsProcesats(nomEntitats, titolsCarrecs, nomsCategories);
     }
+    /**
+     * Rompe cualquier texto de la BD (teléfonos o comentarios) separado por comas para rellenar los 3 campos.
+     */
+    public String[] desglossarTextComes(String textOriginal) {
+        String[] resultats = new String[]{"", "", ""};
+        if (textOriginal == null || textOriginal.isBlank()) {
+            return resultats;
+        }
+        String[] parts = textOriginal.split("\\s*,\\s*");
+        for (int i = 0; i < parts.length && i < 3; i++) {
+            resultats[i] = parts[i];
+        }
+        return resultats;
+    }
+
+    /**
+     * Junta los 3 campos de texto de la pantalla en una sola línea separada por comas.
+     */
+    public String unificarTextComes(String v1, String v2, String v3) {
+        List<String> llista = new java.util.ArrayList<>();
+        if (v1 != null && !v1.isBlank()) llista.add(v1.trim());
+        if (v2 != null && !v2.isBlank()) llista.add(v2.trim());
+        if (v3 != null && !v3.isBlank()) llista.add(v3.trim());
+
+        return llista.stream().collect(Collectors.joining(", "));
+    }
 }
