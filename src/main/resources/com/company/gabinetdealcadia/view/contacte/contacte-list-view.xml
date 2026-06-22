@@ -138,7 +138,7 @@
 
                 <column property="sexe" header="Sexe" autoWidth="true"/>
                 <column property="dataNaixement" header="Data de Naixement" autoWidth="true"/>
-                <column property="nomConjuge" header="Nom delamp Cònjuge" autoWidth="true"/>
+                <column property="nomConjuge" header="Nom del Cònjuge" autoWidth="true"/>
                 <column property="sexeConjuge" header="Sexe del Cònjuge" autoWidth="true"/>
                 <column property="emailPersonal" header="Correu Electrònic Personal" autoWidth="true"/>
                 <column property="telefonMobil" header="Telèfon Mòbil" autoWidth="true"/>
