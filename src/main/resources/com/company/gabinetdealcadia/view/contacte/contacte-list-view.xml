@@ -14,10 +14,7 @@
             </fetchPlan>
             <loader id="contactesDl" readOnly="true">
                 <query>
-                    <![CDATA[
-        select distinct e from Contacte e
-        left join fetch e.categories
-        ]]>
+                    <![CDATA[select e from Contacte e]]>
                 </query>
             </loader>
         </collection>
