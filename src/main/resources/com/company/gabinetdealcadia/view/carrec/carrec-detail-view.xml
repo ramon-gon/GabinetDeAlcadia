@@ -61,9 +61,10 @@
                        property="telefonDirecte"
                        label="Telèfon Directe"/>
 
-            <textField id="emailCorporatiuField"
-                       property="emailCorporatiu"
-                       label="Email Corporatiu"/>
+            <emailField id="emailCorporatiuField"
+                        property="emailCorporatiu"
+                        label="Email Corporatiu"
+                        errorMessage="Per favor, introdueix un correu electrònic vàlid"/>
 
             <checkbox id="puntTramesesField"
                       property="puntTrameses"

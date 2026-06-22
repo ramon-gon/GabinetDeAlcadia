@@ -84,23 +84,23 @@
             <formLayout id="formContacte" dataContainer="contacteDc">
                 <responsiveSteps>
                     <responsiveStep minWidth="0" columns="1"/>
-                    <responsiveStep minWidth="40em" columns="2"/> <!-- Volvemos a 2 columnas para emparejar Número y Comentario -->
+                    <responsiveStep minWidth="40em" columns="2"/>
                 </responsiveSteps>
 
-                <!-- 🛠️ FILA TELÉFONO 1 (Campos de interfaz desvinculados) -->
                 <textField id="tel1Field" label="Telèfon 1" allowedCharPattern="[0-9 ]"/>
                 <textField id="comentariTel1Field" label="Comentari Telèfon 1"/>
 
-                <!-- 🛠️ FILA TELÉFONO 2 (Campos de interfaz desvinculados) -->
                 <textField id="tel2Field" label="Telèfon 2" allowedCharPattern="[0-9 ]"/>
                 <textField id="comentariTel2Field" label="Comentari Telèfon 2"/>
 
-                <!-- 🛠️ FILA TELÉFONO 3 (Campos de interfaz desvinculados) -->
                 <textField id="tel3Field" label="Telèfon 3" allowedCharPattern="[0-9 ]"/>
                 <textField id="comentariTel3Field" label="Comentari Telèfon 3"/>
 
-                <!-- Resto de campos vinculados normales -->
-                <textField id="emailPersonalField" property="emailPersonal" label="Correu Electrònic Personal"/>
+                <emailField id="emailPersonalField"
+                            property="emailPersonal"
+                            label="Correu Electrònic Personal"
+                            errorMessage="Per favor, introdueix un correu electrònic vàlid"/>
+
                 <textField id="adreçaParticularField" property="adreçaParticular" label="Adreça Particular"/>
                 <textField id="codiPostalParticularField" property="codiPostalParticular" allowedCharPattern="[0-9]" label="Codi Postal Particular"/>
                 <textField id="poblacioParticularField" property="poblacioParticular" label="Població Particular"/>
