@@ -50,25 +50,25 @@ public class ContacteListView extends StandardListView<Contacte> {
         return new TextRenderer<>(contacte -> contacteService.obtenerCategoriesUnificades(contacte));
     }
 
-    // 🛠️ 4. Renderer - Muestra la ristra de teléfonos por comas en su columna nativa
+    // 4. Renderer - Teléfonos
     @Supply(to = "contactesDataGrid.telefonMobil", subject = "renderer")
     private Renderer<Contacte> telefonMobilRenderer() {
         return new TextRenderer<>(contacte -> {
             if (contacte.getTelefonMobil() == null || contacte.getTelefonMobil().isBlank()) {
                 return "";
             }
-            return contacte.getTelefonMobil(); // Muestra "666777888, 934445555..."
+            return contacte.getTelefonMobil();
         });
     }
 
-    // 🛠️ 5. Renderer - Muestra la ristra de comentarios por comas en su columna nativa
+    // 5. Renderer - Comentarios
     @Supply(to = "contactesDataGrid.comentariTelefonMobil", subject = "renderer")
     private Renderer<Contacte> comentariTelefonMobilRenderer() {
         return new TextRenderer<>(contacte -> {
             if (contacte.getComentariTelefonMobil() == null || contacte.getComentariTelefonMobil().isBlank()) {
                 return "";
             }
-            return contacte.getComentariTelefonMobil(); // Muestra "Mòbil, Fix casa..."
+            return contacte.getComentariTelefonMobil();
         });
     }
 

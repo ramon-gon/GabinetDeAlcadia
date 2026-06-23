@@ -72,7 +72,7 @@
                 <button id="exportaExcelBtn" action="entitatsDataGrid.excelExport"/>
             </startSlot>
             <endSlot>
-                <simplePagination id="pagination" dataLoader="entitatsDl"/>
+                <simplePagination id="pagination" dataLoader="entitatsDl" autoLoad="false"/>
             </endSlot>
         </hbox>
 
@@ -91,11 +91,8 @@
             </actions>
             <columns resizable="true">
                 <column property="nom" header="Nom" autoWidth="true"/>
-
                 <column key="presidentColumn" header="President" autoWidth="true"/>
-
                 <column key="categoriesColumn" header="Categories" autoWidth="true"/>
-
                 <column property="adreçaSeu" header="Adreça de la Seu" autoWidth="true"/>
                 <column property="codiPostal" header="Codi Postal" autoWidth="true"/>
                 <column property="poblacio" header="Població" autoWidth="true"/>

@@ -112,7 +112,9 @@
                 <button id="exportaExcelBtn" action="contactesDataGrid.excelExport"/>
             </startSlot>
             <endSlot>
-                <simplePagination id="pagination" dataLoader="contactesDl"/>
+                <simplePagination id="pagination"
+                                  dataLoader="contactesDl"
+                                  autoLoad="false"/>
             </endSlot>
         </hbox>
         <dataGrid id="contactesDataGrid"
