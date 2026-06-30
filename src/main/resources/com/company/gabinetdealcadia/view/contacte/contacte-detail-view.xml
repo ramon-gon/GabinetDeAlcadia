@@ -101,7 +101,7 @@
                             label="Correu Electrònic Personal"
                             errorMessage="Per favor, introdueix un correu electrònic vàlid"/>
 
-                <textField id="adreçaParticularField" property="adreçaParticular" label="Adreça Particular"/>
+                <textField id="adreçaParticularField" property="adrecaParticular" label="Adreça Particular"/>
                 <textField id="codiPostalParticularField" property="codiPostalParticular" allowedCharPattern="[0-9]" label="Codi Postal Particular"/>
                 <textField id="poblacioParticularField" property="poblacioParticular" label="Població Particular"/>
                 <textArea id="observacionsHistoriquesField" property="observacionsHistoriques" label="Observacions Històriques" colspan="2"/>

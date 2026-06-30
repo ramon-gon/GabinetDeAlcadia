@@ -93,7 +93,7 @@
                 <column property="nom" header="Nom" autoWidth="true"/>
                 <column key="presidentColumn" header="President" autoWidth="true"/>
                 <column key="categoriesColumn" header="Categories" autoWidth="true"/>
-                <column property="adreçaSeu" header="Adreça de la Seu" autoWidth="true"/>
+                <column property="adrecaSeu" header="Adreça de la Seu" autoWidth="true"/>
                 <column property="codiPostal" header="Codi Postal" autoWidth="true"/>
                 <column property="poblacio" header="Població" autoWidth="true"/>
                 <column property="pais" header="País" autoWidth="true"/>

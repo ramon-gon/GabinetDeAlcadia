@@ -65,11 +65,11 @@ public class Contacte {
     @Column(name = "email_personal")
     private String emailPersonal;
 
-    @Column(name = "telefon_mobil", length = 50)
+    @Column(name = "telefon_mobil")
     private String telefonMobil;
 
-    @Column(name = "adreça_particular")
-    private String adreçaParticular;
+    @Column(name = "adreca_particular")
+    private String adrecaParticular;
 
     @Column(name = "codi_postal_particular", length = 20)
     private String codiPostalParticular;
@@ -247,12 +247,11 @@ public class Contacte {
         this.telefonMobil = telefonMobil;
     }
 
-    public String getAdreçaParticular() {
-        return adreçaParticular;
+    public String getAdrecaParticular() {
+        return adrecaParticular;
     }
-
-    public void setAdreçaParticular(String adreçaParticular) {
-        this.adreçaParticular = adreçaParticular;
+    public void setAdrecaParticular(String adrecaParticular) {
+        this.adrecaParticular = adrecaParticular;
     }
 
     public String getCodiPostalParticular() {

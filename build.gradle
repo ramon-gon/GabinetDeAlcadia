@@ -1,13 +1,18 @@
 plugins {
+    // Plugin principal de Jmix que gestiona la configuración del framework
     id 'io.jmix' version '2.8.1'
     id 'java'
+    // Plugin para mejorar la integración del proyecto con IntelliJ IDEA
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.9'
 }
 
+// Aplica el plugin de Spring Boot para permitir compilar y ejecutar la aplicación web
 apply plugin: 'org.springframework.boot'
+// Aplica el plugin de Vaadin/FlowUI para gestionar la interfaz de usuario
 apply plugin: 'com.vaadin'
 
 jmix {
+    // Define la versión de la lista de materiales (BOM) de Jmix para que todas las dependencias sean compatibles entre sí
     bomVersion = '2.8.1'
 }
 
@@ -15,56 +20,91 @@ group = 'com.company'
 version = '0.0.1-SNAPSHOT'
 
 repositories {
+    // Repositorio central de Maven para dependencias estándar de Java
     mavenCentral()
+    // Repositorio exclusivo de Jmix de donde se descargan sus starters y componentes
     maven {
         url = 'https://global.repo.jmix.io/repository/public'
     }
 }
 
 dependencies {
+    // --- STARTERS CENTRALES DE JMIX ---
     implementation 'io.jmix.core:jmix-core-starter'
+    // EclipseLink es el ORM que usa Jmix. Este starter gestiona la conexión a bases de datos relacionales (tanto Postgres como Oracle)
     implementation 'io.jmix.data:jmix-eclipselink-starter'
+
+    // --- SUBSISTEMA DE SEGURIDAD Y ACCESO ---
     implementation 'io.jmix.security:jmix-security-starter'
     implementation 'io.jmix.security:jmix-security-flowui-starter'
     implementation 'io.jmix.security:jmix-security-data-starter'
+
+    // --- INTERFAZ DE USUARIO Y ASSETS ---
+    // Starter para gestionar almacenamiento de archivos local (File Storage)
     implementation 'io.jmix.localfs:jmix-localfs-starter'
     implementation 'io.jmix.flowui:jmix-flowui-starter'
     implementation 'io.jmix.flowui:jmix-flowui-data-starter'
     implementation 'io.jmix.flowui:jmix-flowui-themes'
+
+    // --- HERRAMIENTAS DE DATOS Y ADMINISTRACIÓN ---
     implementation 'io.jmix.datatools:jmix-datatools-starter'
     implementation 'io.jmix.datatools:jmix-datatools-flowui-starter'
 
+    // --- MOTOR DE CORREO Y QUARTZ (TAREAS PROGRAMADAS) ---
     implementation 'io.jmix.email:jmix-email-starter'
     implementation 'io.jmix.email:jmix-email-flowui-starter'
     implementation 'io.jmix.quartz:jmix-quartz-starter'
 
+    // --- COMPONENTES WEB Y EXPORTACIÓN ---
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Permite exportar datos de las tablas (Grids) de la interfaz a Excel/Action
     implementation 'io.jmix.gridexport:jmix-gridexport-flowui-starter'
-    runtimeOnly 'org.postgresql:postgresql'
 
+    // --- DRIVERS DE BASES DE DATOS (COMENTADOS Y ACTIVOS) ---
+    // COMENTADO: Se desactiva PostgreSQL porque ya no vamos a conectar a esa base de datos
+    // runtimeOnly 'org.postgresql:postgresql'
+
+    // ACTIVO: Añadimos el driver oficial de Oracle (ojdbc8) requerido para conectar con tu base de datos dbscontinsti
+    //runtimeOnly 'com.oracle.database.jdbc:ojdbc11:21.8.0.0'
+
+    // --- DEPENDENCIAS DE PRUEBAS/TESTEO ---
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation 'io.jmix.flowui:jmix-flowui-test-assist'
-    implementation 'org.postgresql:postgresql'
+
+    // COMENTADO: Segunda mención repetida de PostgreSQL que también se deshabilita
+    // implementation 'org.postgresql:postgresql'
+
+    // ELIMINADO/CORREGIDO: Aquí estaba 'io.jmix.data:jmix-oracle-starter' que causaba el fallo de compilación.
+    // Se eliminó por completo porque Jmix no utiliza ese starter independiente; usa el de EclipseLink junto al driver runtimeOnly de Oracle.
+    //implementation 'org.eclipse.persistence:org.eclipse.persistence.oracle'
+    //implementation 'com.oracle.database.jdbc:ojdbc11'
+    implementation 'com.oracle.database.jdbc:ojdbc11'
+    implementation 'org.eclipse.persistence:org.eclipse.persistence.oracle'
+
 }
 
 configurations.implementation {
+    // Excluye componentes de Vaadin Hilla/Copilot que no se usan en la arquitectura clásica de Jmix FlowUI
     exclude group: 'com.vaadin', module: 'hilla'
     exclude group: 'com.vaadin', module: 'hilla-dev'
     exclude group: 'com.vaadin', module: 'copilot'
 }
 
 test {
+    // Configura el proyecto para correr los test usando la plataforma JUnit 5
     useJUnitPlatform()
 }
 
 idea {
     module {
+        // Evita que IntelliJ indexe carpetas temporales o de configuración interna para mejorar la velocidad del IDE
         excludeDirs.addAll(files '.jmix', 'node_modules', 'src/main/frontend/generated/', 'src/main/bundles')
     }
 }
 
 vaadin {
+    // Desactiva la optimización estricta de bundles durante el desarrollo para acelerar el despliegue local
     optimizeBundle = false
 }

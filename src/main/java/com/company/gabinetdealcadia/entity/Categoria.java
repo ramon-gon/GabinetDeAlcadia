@@ -15,7 +15,7 @@ public class Categoria {
 
     @JmixGeneratedValue
     @Id
-    @Column(name = "id_categoria", nullable = false, columnDefinition = "UUID")
+    @Column(name = "id_categoria", nullable = false)
     private UUID id;
 
     @InstanceName

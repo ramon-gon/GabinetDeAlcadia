@@ -13,7 +13,13 @@
             <map>
               <entry key="main">
                 <value>
-                  <DataStoreSettingsV2 />
+                  <DataStoreSettingsV2>
+                    <option name="generateDdlType" value="CREATE_AND_UPDATE" />
+                    <option name="nameLengthMode" value="ORACLE" />
+                    <option name="supportedTypes">
+                      <option value="oracle" />
+                    </option>
+                  </DataStoreSettingsV2>
                 </value>
               </entry>
             </map>
@@ -47,6 +53,7 @@
     <exclude-change idName="FK_CARREC_ON_ID_ENTITAT" tagName="addForeignKeyConstraint" />
   </component>
   <component name="JmixPluginProjectSettings">
+    <option name="separateUpdateDropScripts" value="false" />
     <option name="savedDbProperties">
       <list>
         <SavedDbProperties>
@@ -55,6 +62,24 @@
           <option name="dbmsVersion" />
           <option name="host" value=".jmix/hsqldb" />
           <option name="url" value="jdbc:hsqldb:file:.jmix/hsqldb/gabinetdealcadia" />
+          <option name="user" value="sa" />
+        </SavedDbProperties>
+        <SavedDbProperties>
+          <option name="databaseName" value="dbscontinsti" />
+          <option name="dbType" value="oracle" />
+          <option name="dbmsVersion" />
+          <option name="host" value="introckdb210.egara.local" />
+          <option name="pass" value="463gt38CGhjri8ccF" />
+          <option name="port" value="1521" />
+          <option name="url" value="jdbc:oracle:thin:@//introckdb210.egara.local:1521/dbscontinsti" />
+          <option name="user" value="CONTINST" />
+        </SavedDbProperties>
+        <SavedDbProperties>
+          <option name="databaseName" value="dbscontinsti" />
+          <option name="dbType" value="h2" />
+          <option name="dbmsVersion" />
+          <option name="host" value="./.jmix/h2" />
+          <option name="url" value="jdbc:h2:file:./.jmix/h2/dbscontinsti" />
           <option name="user" value="sa" />
         </SavedDbProperties>
       </list>

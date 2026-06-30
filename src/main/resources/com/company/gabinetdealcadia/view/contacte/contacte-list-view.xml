@@ -142,7 +142,7 @@
                 <column property="emailPersonal" header="Correu Electrònic Personal" autoWidth="true"/>
                 <column property="telefonMobil" header="Telèfon Mòbil" autoWidth="true"/>
                 <column property="comentariTelefonMobil" header="Comentaris del telèfon" autoWidth="true"/>
-                <column property="adreçaParticular" header="Adreça Particular" autoWidth="true"/>
+                <column property="adrecaParticular" header="Adreça Particular" autoWidth="true"/>
                 <column property="codiPostalParticular" header="Codi Postal Particular" autoWidth="true"/>
                 <column property="poblacioParticular" header="Població Particular" autoWidth="true"/>
                 <column property="observacionsHistoriques" header="Observacions Històriques" autoWidth="true" flexGrow="1"/>

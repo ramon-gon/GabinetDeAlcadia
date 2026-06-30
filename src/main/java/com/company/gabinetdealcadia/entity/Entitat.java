@@ -32,8 +32,8 @@ public class Entitat {
     @ManyToMany
     private List<Categoria> categories;
 
-    @Column(name = "adreça_seu")
-    private String adreçaSeu;
+    @Column(name = "adreca_seu")
+    private String adrecaSeu;
 
     @Column(name = "codi_postal", length = 20)
     private String codiPostal;
@@ -111,12 +111,12 @@ public class Entitat {
         this.nom = nom;
     }
 
-    public String getAdreçaSeu() {
-        return adreçaSeu;
+    public String getAdrecaSeu() {
+        return adrecaSeu;
     }
 
-    public void setAdreçaSeu(String adreçaSeu) {
-        this.adreçaSeu = adreçaSeu;
+    public void setAdrecaSeu(String adrecaSeu) {
+        this.adrecaSeu = adrecaSeu;
     }
 
     public String getCodiPostal() {
