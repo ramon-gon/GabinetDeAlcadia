@@ -28,45 +28,82 @@
     <layout>
         <vbox id="mainBox">
 
-            <h3>Dades del Contacte</h3>
+            <!-- 1. BLOQUE OPERATIVO PRINCIPAL (IDENTIDAD, ROL, CATEGORÍAS Y TELÉFONOS) -->
+            <h3>Dades del Contacte i Rol Institucional</h3>
             <formLayout id="form" dataContainer="contacteDc">
                 <responsiveSteps>
                     <responsiveStep minWidth="0" columns="1"/>
                     <responsiveStep minWidth="40em" columns="2"/>
                 </responsiveSteps>
 
+                <!-- Fila 1: Nombre y Primer Apellido -->
                 <textField id="nomField" property="nom" label="Nom"/>
                 <textField id="primerCognomField" property="primer_cognom" label="Primer Cognom"/>
-                <textField id="segonCognomField" property="segon_cognom" label="Segon Cognom"/>
 
+                <!-- Fila 2: Segundo Apellido y Email (Cierran la filiación personal básica) -->
+                <textField id="segonCognomField" property="segon_cognom" label="Segon Cognom"/>
+                <emailField id="emailPersonalField"
+                            property="emailPersonal"
+                            label="Correu Electrònic Personal"
+                            errorMessage="Per favor, introdueix un correu electrònic vàlid"/>
+
+                <!-- Fila 3: VINCULACIÓN Y CARGO (Subidos arriba del todo por prioridad) -->
                 <textArea id="carrecEntitatNomField"
                           label="Entitats Vinculades"
                           readOnly="true"
                           minHeight="4em"/>
-
-                <textArea id="entitatCategoriesField"
-                          label="Categories de les Entitats"
-                          readOnly="true"
-                          minHeight="4em"/>
-
-                <multiSelectComboBox id="categoriesField"
-                                     property="categories"
-                                     itemsContainer="categoriasDc"
-                                     label="Categories del Contacte"/>
 
                 <textArea id="carrecTitolField"
                           label="Títols dels Càrrecs"
                           readOnly="true"
                           minHeight="4em"/>
 
-                <select id="sexeField" property="sexe" label="Sexe"/>
-                <datePicker id="dataNaixementField" property="dataNaixement" label="Data de Naixement"/>
+                <!-- Fila 4: LAS DOS CATEGORÍAS (A la misma altura, justo bajo sus datos) -->
+                <multiSelectComboBox id="categoriesField"
+                                     property="categories"
+                                     itemsContainer="categoriasDc"
+                                     label="Categories del Contacte"/>
 
+                <textArea id="entitatCategoriesField"
+                          label="Categories de les Entitats"
+                          readOnly="true"
+                          minHeight="4em"/>
+
+                <!-- Fila 5 en adelante: Bloque de Teléfonos prioritarios -->
+                <textField id="tel1Field" label="Telèfon 1" allowedCharPattern="[0-9 ]"/>
+                <textField id="comentariTel1Field" label="Comentari Telèfon 1"/>
+
+                <textField id="tel2Field" label="Telèfon 2" allowedCharPattern="[0-9 ]"/>
+                <textField id="comentariTel2Field" label="Comentari Telèfon 2"/>
+
+                <textField id="tel3Field" label="Telèfon 3" allowedCharPattern="[0-9 ]"/>
+                <textField id="comentariTel3Field" label="Comentari Telèfon 3"/>
             </formLayout>
 
             <hr/>
 
-            <h3>Dades del Didn't / Cònjuge</h3>
+            <!-- 2. LOCALIZACIÓN Y DATOS DE ARCHIVO (PRIORIDAD BAJA) -->
+            <h3>Localització i Perfil Personal</h3>
+            <formLayout id="formContacte" dataContainer="contacteDc">
+                <responsiveSteps>
+                    <responsiveStep minWidth="0" columns="1"/>
+                    <responsiveStep minWidth="40em" columns="2"/>
+                </responsiveSteps>
+
+                <textField id="adreçaParticularField" property="adrecaParticular" label="Adreça Particular"/>
+                <textField id="poblacioParticularField" property="poblacioParticular" label="Població Particular"/>
+                <textField id="codiPostalParticularField" property="codiPostalParticular" allowedCharPattern="[0-9]" label="Codi Postal Particular"/>
+
+                <select id="sexeField" property="sexe" label="Sexe"/>
+                <datePicker id="dataNaixementField" property="dataNaixement" label="Data de Naixement"/>
+
+                <textArea id="observacionsHistoriquesField" property="observacionsHistoriques" label="Observacions Històriques" colspan="2"/>
+            </formLayout>
+
+            <hr/>
+
+            <!-- 3. PROTOCOLO / CÓNYUGE (MÍNIMA PRIORIDAD) -->
+            <h3>Dades del Cònjuge</h3>
             <formLayout id="formConjuge" dataContainer="contacteDc">
                 <responsiveSteps>
                     <responsiveStep minWidth="0" columns="1"/>
@@ -78,37 +115,9 @@
                 <select id="sexeConjugeField" property="sexeConjuge" label="Sexe del Cònjuge"/>
             </formLayout>
 
-            <hr/>
-
-            <h3>Dades de Contacte i Particulars</h3>
-            <formLayout id="formContacte" dataContainer="contacteDc">
-                <responsiveSteps>
-                    <responsiveStep minWidth="0" columns="1"/>
-                    <responsiveStep minWidth="40em" columns="2"/>
-                </responsiveSteps>
-
-                <textField id="tel1Field" label="Telèfon 1" allowedCharPattern="[0-9 ]"/>
-                <textField id="comentariTel1Field" label="Comentari Telèfon 1"/>
-
-                <textField id="tel2Field" label="Telèfon 2" allowedCharPattern="[0-9 ]"/>
-                <textField id="comentariTel2Field" label="Comentari Telèfon 2"/>
-
-                <textField id="tel3Field" label="Telèfon 3" allowedCharPattern="[0-9 ]"/>
-                <textField id="comentariTel3Field" label="Comentari Telèfon 3"/>
-
-                <emailField id="emailPersonalField"
-                            property="emailPersonal"
-                            label="Correu Electrònic Personal"
-                            errorMessage="Per favor, introdueix un correu electrònic vàlid"/>
-
-                <textField id="adreçaParticularField" property="adrecaParticular" label="Adreça Particular"/>
-                <textField id="codiPostalParticularField" property="codiPostalParticular" allowedCharPattern="[0-9]" label="Codi Postal Particular"/>
-                <textField id="poblacioParticularField" property="poblacioParticular" label="Població Particular"/>
-                <textArea id="observacionsHistoriquesField" property="observacionsHistoriques" label="Observacions Històriques" colspan="2"/>
-            </formLayout>
-
         </vbox>
 
+        <!-- BOTONERA DE ACCIÓN -->
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveCloseAction"/>
             <button id="closeButton" action="closeAction"/>
