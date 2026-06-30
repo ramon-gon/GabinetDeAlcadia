@@ -83,21 +83,21 @@
                         <entityComboBox metaClass="Entitat"
                                         itemsContainer="entitatsDc"/>
                     </jpqlFilter>
-
                     <jpqlFilter parameterClass="java.util.UUID"
+                                hasInExpression="true"
                                 label="Filtra per Categoria"
                                 parameterName="categoriaSeleccionada">
                         <condition>
                             <c:jpql>
                                 <c:where><![CDATA[
-                                    exists (select cat from e.categories cat where cat.id = :categoriaSeleccionada)
-                                    or
-                                    exists (select c from Carrec c join c.entitat ent join ent.categories entCat where c.contacte = e and entCat.id = :categoriaSeleccionada)
-                                ]]></c:where>
+                exists (select cat from e.categories cat where cat.id in :categoriaSeleccionada)
+                or
+                exists (select c from Carrec c join c.entitat ent join ent.categories entCat where c.contacte = e and entCat.id in :categoriaSeleccionada)
+            ]]></c:where>
                             </c:jpql>
                         </condition>
-                        <entityComboBox metaClass="Categoria"
-                                        itemsContainer="categoriasDc"/>
+                        <multiSelectComboBox metaClass="Categoria"
+                                             itemsContainer="categoriasDc"/>
                     </jpqlFilter>
                 </configuration>
             </configurations>

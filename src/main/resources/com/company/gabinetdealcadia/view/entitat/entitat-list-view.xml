@@ -48,15 +48,16 @@
                                     label="Nom Entitat"/>
 
                     <jpqlFilter parameterClass="java.util.UUID"
+                                hasInExpression="true"
                                 label="Filtra per Categoria"
                                 parameterName="categoriaSeleccionada">
                         <condition>
                             <c:jpql>
-                                <c:where><![CDATA[exists (select c from e.categories c where c.id = :categoriaSeleccionada)]]></c:where>
+                                <c:where><![CDATA[exists (select c from e.categories c where c.id in :categoriaSeleccionada)]]></c:where>
                             </c:jpql>
                         </condition>
-                        <entityComboBox metaClass="Categoria"
-                                        itemsContainer="filtreCategoriesDc"/>
+                        <multiSelectComboBox metaClass="Categoria"
+                                             itemsContainer="filtreCategoriesDc"/>
                     </jpqlFilter>
                 </configuration>
             </configurations>

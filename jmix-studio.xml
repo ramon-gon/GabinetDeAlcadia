@@ -51,6 +51,26 @@
     <exclude-change idName="FK_CARREC_ON_ID_ENTITAT" tagName="dropForeignKeyConstraint" />
     <exclude-change idName="FK_CARREC_ON_ID_CONTACTE" tagName="addForeignKeyConstraint" />
     <exclude-change idName="FK_CARREC_ON_ID_ENTITAT" tagName="addForeignKeyConstraint" />
+    <exclude-change idName="categoria_contacte_link#categoria_id" tagName="dropColumn" />
+    <exclude-change idName="categoria_contacte_link#contacte_id" tagName="dropColumn" />
+    <exclude-change idName="entitat#id_entitat" tagName="dropColumn" />
+    <exclude-change idName="entitat#id_entitat" tagName="addColumn" />
+    <exclude-change idName="carrec#id_carrec" tagName="addColumn" />
+    <exclude-change idName="carrec#id_contacte" tagName="addColumn" />
+    <exclude-change idName="carrec#id_entitat" tagName="addColumn" />
+    <exclude-change idName="categoria#id_categoria" tagName="addColumn" />
+    <exclude-change idName="categoria#id_categoria" tagName="dropColumn" />
+    <exclude-change idName="categoria_contacte_link#categoria_id" tagName="addColumn" />
+    <exclude-change idName="categoria_contacte_link#contacte_id" tagName="addColumn" />
+    <exclude-change idName="contacte#id_contacte" tagName="dropColumn" />
+    <exclude-change idName="contacte#id_contacte" tagName="addColumn" />
+    <exclude-change idName="carrec#id_carrec" tagName="dropColumn" />
+    <exclude-change idName="carrec#id_contacte" tagName="dropColumn" />
+    <exclude-change idName="carrec#id_entitat" tagName="dropColumn" />
+    <exclude-change idName="categoria_entitat_link#categoria_id" tagName="addColumn" />
+    <exclude-change idName="categoria_entitat_link#entitat_id" tagName="addColumn" />
+    <exclude-change idName="categoria_entitat_link#categoria_id" tagName="dropColumn" />
+    <exclude-change idName="categoria_entitat_link#entitat_id" tagName="dropColumn" />
   </component>
   <component name="JmixPluginProjectSettings">
     <option name="separateUpdateDropScripts" value="false" />
