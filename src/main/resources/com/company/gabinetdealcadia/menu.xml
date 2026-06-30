@@ -7,7 +7,6 @@
         <item view="Entitat.list" title="msg://com.company.gabinetdealcadia.view.entitat/entitatListView.title"/>
         <item view="Carrec.list" title="msg://com.company.gabinetdealcadia.view.carrec/carrecListView.title"/>
         <item view="Categoria.list" title="msg://com.company.gabinetdealcadia.view.categoria/categoriaListView.title"/>
-        <item view="EnviarCorreu" title="msg://com.company.gabinetdealcadia.view.enviarcorreu/enviarCorreu.title"/>
     </menu>
 
 </menu-config>

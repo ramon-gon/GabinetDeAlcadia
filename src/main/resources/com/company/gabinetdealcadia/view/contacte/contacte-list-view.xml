@@ -135,17 +135,10 @@
                 <column key="entitatpertanyent" header="Entitat" autoWidth="true"/>
                 <column key="categoriesColumn" header="Categories" autoWidth="true"/>
 
-                <column property="sexe" header="Sexe" autoWidth="true"/>
-                <column property="dataNaixement" header="Data de Naixement" autoWidth="true"/>
-                <column property="nomConjuge" header="Nom del Cònjuge" autoWidth="true"/>
-                <column property="sexeConjuge" header="Sexe del Cònjuge" autoWidth="true"/>
                 <column property="emailPersonal" header="Correu Electrònic Personal" autoWidth="true"/>
                 <column property="telefonMobil" header="Telèfon Mòbil" autoWidth="true"/>
                 <column property="comentariTelefonMobil" header="Comentaris del telèfon" autoWidth="true"/>
                 <column property="adrecaParticular" header="Adreça Particular" autoWidth="true"/>
-                <column property="codiPostalParticular" header="Codi Postal Particular" autoWidth="true"/>
-                <column property="poblacioParticular" header="Població Particular" autoWidth="true"/>
-                <column property="observacionsHistoriques" header="Observacions Històriques" autoWidth="true" flexGrow="1"/>
             </columns>
         </dataGrid>
         <hbox id="lookupActions" visible="false">
