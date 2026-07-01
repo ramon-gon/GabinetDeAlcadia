@@ -53,7 +53,7 @@ public interface ReadAccessRole {
             "Entitat.list",
             "Contacte.list",
             "Categoria.list",  // 🌟 AÑADIDO: Menú para ir a ver y gestionar Categorías
-            "Carrec.list"   // 🌟 AÑADIDO: Menú para ir a ver los Envíos de Correo Electronico
+            "Carrec.list"
     })
     void menuPermissions();
 }

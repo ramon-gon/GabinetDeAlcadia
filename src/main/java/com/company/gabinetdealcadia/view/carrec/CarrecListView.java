@@ -24,11 +24,6 @@ public class CarrecListView extends StandardListView<Carrec> {
     @ViewComponent
     private DataGrid<Carrec> carrecsDataGrid;
 
-    @Supply(to = "carrecsDataGrid.vigent", subject = "renderer")
-    private Renderer<Carrec> vigentRenderer() {
-        return new TextRenderer<>(Carrec::getVigentSiNo);
-    }
-
     @Supply(to = "carrecsDataGrid.puntTrameses", subject = "renderer")
     private Renderer<Carrec> puntTramesesRenderer() {
         return new TextRenderer<>(Carrec::getPuntTramesesSiNo);
