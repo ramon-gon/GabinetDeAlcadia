@@ -83,6 +83,7 @@ dependencies {
     implementation 'com.oracle.database.jdbc:ojdbc11'
     implementation 'org.eclipse.persistence:org.eclipse.persistence.oracle'
 
+    implementation 'io.jmix.ldap:jmix-ldap-starter'
 }
 
 configurations.implementation {
