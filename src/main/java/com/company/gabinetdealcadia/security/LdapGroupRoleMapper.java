@@ -28,11 +28,11 @@ public class LdapGroupRoleMapper implements LdapAuthorityToJmixRoleCodesMapper {
         String authorityUpper = authority.toUpperCase();
 
         if (authorityUpper.contains("FMALCALDIAADMIN")) {
-            roles.add("rol-admin-jmix");
+            roles.add(FullAccessRole.CODE);
             roles.add(UiMinimalRole.CODE);
 
         } else if (authorityUpper.contains("FMALCALDIAREADER")) {
-            roles.add("rol-lector-jmix");
+            roles.add(ReadAccessRole.CODE);
             roles.add(UiMinimalRole.CODE);
 
         } else if (authorityUpper.contains("FMALCALDIACONTRIBUTOR")) {
