@@ -27,17 +27,14 @@ public class LdapGroupRoleMapper implements LdapAuthorityToJmixRoleCodesMapper {
         // problemas de mayusculas/minusculas.
         String authorityUpper = authority.toUpperCase();
 
-        if (authorityUpper.contains("FMALCALDIAADMIN")) {
+        if (authorityUpper.contains("CONTACTESALCALDIA_ADMIN")) {
             roles.add(FullAccessRole.CODE);
             roles.add(UiMinimalRole.CODE);
 
-        } else if (authorityUpper.contains("FMALCALDIAREADER")) {
+        } else if (authorityUpper.contains("CONTACTESALCALDIA_RE")) {
             roles.add(ReadAccessRole.CODE);
             roles.add(UiMinimalRole.CODE);
 
-        } else if (authorityUpper.contains("FMALCALDIACONTRIBUTOR")) {
-            roles.add(FullAccessRole.CODE);
-            roles.add(UiMinimalRole.CODE);
         }
 
         return roles;
